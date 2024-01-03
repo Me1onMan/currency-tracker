@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new CleanWebpackPlugin(),
-    new ESLintWebpackPlugin({ extensions: ["jsx", "js"] }),
+    new ESLintWebpackPlugin({ extensions: ["jsx", "js", "tsx"] }),
   ],
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
