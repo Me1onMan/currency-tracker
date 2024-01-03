@@ -5,7 +5,7 @@ const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.jsx",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[hash].js",
@@ -19,7 +19,7 @@ module.exports = {
     new ESLintWebpackPlugin({ extensions: ["jsx", "js"] }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   module: {
     rules: [
@@ -46,6 +46,19 @@ module.exports = {
             presets: ["@babel/preset-react"],
           },
         },
+      },
+      {
+        test: /\.(tsx|ts)?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+      {
+        test: /.(png|jpg|jpeg|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
       },
     ],
   },
