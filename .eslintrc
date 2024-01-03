@@ -1,4 +1,7 @@
 {
+  "settings": {
+    "import/resolver": "webpack"
+  },
   "env": {
     "browser": true,
     "es2021": true
