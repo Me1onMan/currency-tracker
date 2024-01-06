@@ -1,14 +1,11 @@
 import React from "react";
 
-import image from "../assets/diagram-svgrepo-com 2.png";
-import { HeaderContainer } from "./Header/styled";
+import Navbar from "./Navbar/index";
 
 export default function App() {
   return (
     <div>
-      Currency tracker
-      <HeaderContainer>Header</HeaderContainer>
-      <img src={image} alt="pavilion" />
+      <Navbar />
     </div>
   );
 }
