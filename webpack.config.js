@@ -14,7 +14,7 @@ module.exports = {
     port: 3000,
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: "./src/index.html" }),
+    new HtmlWebpackPlugin({ template: "./public/index.html" }),
     new CleanWebpackPlugin(),
     new ESLintWebpackPlugin({ extensions: ["jsx", "js", "tsx"] }),
   ],
