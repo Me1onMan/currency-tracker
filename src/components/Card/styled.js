@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   width: 520px;
@@ -17,7 +18,8 @@ export const TextContainer = styled.div`
   margin-left: 32px;
 `;
 
-export const Title = styled.div`
+export const Title = styled.h3`
+  font-weight: 400;
   font-size: 35px;
   color: #d9d9d9;
 `;
