@@ -4,14 +4,13 @@ import React, { useEffect, useState } from "react";
 
 import { currencyNames, targetCurrencies } from "../../constants/currency";
 import Card from "../Card/index";
+import UpdateIndicator from "../UpdateIndicator/index";
 import {
   CardsContainer,
-  Indicator,
   Main,
   Quotes,
   SectionHeader,
   // Stocks,
-  UpdateInfo,
 } from "./styled";
 
 type currencyResponse = {
@@ -34,11 +33,6 @@ type currencyDataWithNamesType = {
     };
   };
 };
-
-function Loading(): JSX.Element {
-  // console.log("Loading...");
-  return <h3>LOADING...</h3>;
-}
 
 function HomeContent(): JSX.Element {
   // const client = new CurrencyAPI('cur_live_A1EqusuOPUwszJMymwnAoeqG1muIzyr1X7CwNn4t');
@@ -100,14 +94,9 @@ function HomeContent(): JSX.Element {
 
   return (
     <Main>
-      <UpdateInfo>
-        <Indicator />
-        {responseData ? (
-          `Last updated ${responseData.meta.last_updated_at}`
-        ) : (
-          <Loading />
-        )}
-      </UpdateInfo>
+      {responseData && (
+        <UpdateIndicator lastUpdatedAt={responseData.meta.last_updated_at} />
+      )}
       {/* <Stocks>
         <SectionHeader>Stocks</SectionHeader>
         <CardsContainer>
