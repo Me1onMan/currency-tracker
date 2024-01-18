@@ -1,14 +1,16 @@
+import ModalCurrency from "components/ModalCurrency/index";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 
-import icon from "../../assets/Dollar-Icon.png";
-import ModalCurrency from "../ModalCurrency/index";
+// @ts-expect-error @ as src
+import useImageLoader from "@/utils/useImageLoader";
+
 import { CardContainer, Icon, TextContainer, Title, Value } from "./styled";
 
 type allCurrenciesType = {
   [currencyCode: string]: {
     code: string;
-    name: string;
+    name?: string;
     value: number;
   };
 };
@@ -18,10 +20,16 @@ type CardContentProps = {
   currencies: allCurrenciesType;
 };
 
+const modalContainer = document.getElementById("modal");
+
 function Card({ currencyCode, currencies }: CardContentProps): JSX.Element {
   const [showModal, setShowModal] = useState(false);
 
-  const modalContainer = document.getElementById("modal");
+  const iconFileName = `${currencies[currencyCode].name.replace(
+    " ",
+    "-",
+  )}-Icon.png`;
+  const icon = useImageLoader(iconFileName);
 
   const openModal = () => {
     setShowModal(true);

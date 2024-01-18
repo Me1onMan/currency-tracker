@@ -1,13 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import logo from "../../assets/diagram-svgrepo-com-1.png";
+import logo from "@/assets/diagram-svgrepo-com-1.png";
+
 import {
   Copyright,
   FooterContainer,
   FooterContent,
   FooterDescription,
   FooterMain,
-  LinksTable,
+  LinksContainer,
   Logo,
   LogoContainer,
   LogoName,
@@ -30,27 +32,23 @@ function Footer(): JSX.Element {
           </FooterDescription>
         </FooterContent>
 
-        <LinksTable>
-          <thead>
-            <tr>
-              <td>General</td>
-              <td>Product</td>
-              <td>Community</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Market</td>
-              <td>Sparks</td>
-              <td>Ideas</td>
-            </tr>
-            <tr>
-              <td>Service</td>
-              <td>Snaps</td>
-              <td>Streams</td>
-            </tr>
-          </tbody>
-        </LinksTable>
+        <LinksContainer>
+          <div>
+            <p>General</p>
+            <Link to="/contacts">Market</Link>
+            <Link to="/contacts">Service</Link>
+          </div>
+          <div>
+            <p>Product</p>
+            <Link to="/contacts">Sparks</Link>
+            <Link to="/contacts">Snaps</Link>
+          </div>
+          <div>
+            <p>Community</p>
+            <Link to="/contacts">Ideas</Link>
+            <Link to="/contacts">Streams</Link>
+          </div>
+        </LinksContainer>
       </FooterMain>
       <Copyright>Startsup © 2023-2024, All Rights Reserved</Copyright>
     </FooterContainer>

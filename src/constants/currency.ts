@@ -8,22 +8,22 @@ export const targetCurrencies = [
   "EUR",
   "BTC",
   "TRY",
-  "RUB",
+  "BYN",
 ];
 
-type CurrencyNames = {
+export type CurrencyNames = {
   [code: string]: string;
 };
 
 export const currencyNames: CurrencyNames = {
   USD: "Commercial Dollar",
   ARS: "Argentine Peso",
-  CAD: "Canadian Dollar",
-  JPY: "Japanese Yen",
   AUD: "Australian Dollar",
+  BTC: "Bitcoin",
+  BYN: "Belarusian Rouble",
+  CAD: "Canadian Dollar",
   CNY: "Chinese Yuan",
   EUR: "Euro",
-  BTC: "Bitcoin",
   TRY: "Turkish Lira",
-  RUB: "Russian Rouble",
+  JPY: "Japanese Yen",
 };

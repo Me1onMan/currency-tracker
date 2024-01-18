@@ -1,6 +1,7 @@
 import React from "react";
 
-import logo from "../../assets/diagram-svgrepo-com-1.png";
+import logo from "@/assets/diagram-svgrepo-com-1.png";
+
 import {
   DescriptionContainer,
   DescriptionText,

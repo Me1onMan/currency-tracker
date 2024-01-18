@@ -1,6 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 
-import { targetCurrencies } from "../../constants/currency";
+// @ts-expect-error @ as src
+import { targetCurrencies } from "@/constants/currency";
+
 import {
   CloseBtn,
   DropdownBtn,
@@ -17,7 +19,7 @@ import {
 type allCurrenciesType = {
   [currencyCode: string]: {
     code: string;
-    name: string;
+    name?: string;
     value: number;
   };
 };
@@ -92,7 +94,7 @@ function ModalCurrency({
           >{`${selectedCurrency} (${currencies[selectedCurrency].name})`}</DropdownBtn>
           {isOpen && (
             <List>
-              {targetCurrencies.map((code) => (
+              {targetCurrencies.map((code: string) => (
                 <Item key={code}>
                   <ItemBtn
                     onClick={() => selectCurrency(code)}

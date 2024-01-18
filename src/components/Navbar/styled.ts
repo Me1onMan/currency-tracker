@@ -2,40 +2,62 @@ import styled from "styled-components";
 
 export const Logo = styled.img`
   width: 40px;
+
+  @media (max-width: 768px) {
+    width: 24px;
+  }
 `;
 
 export const NavbarContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #030304;
-  height: 100px;
-  padding: 30px 100px;
+  background-color: ${(props) => props.theme.bgColorPrimary};
+  height: 5rem;
+  padding: 0 3rem;
 `;
 
 export const Nav = styled.nav`
-  width: 660px;
-  font-size: 20px;
+  justify-self: center;
   font-weight: 200;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const NavList = styled.ul`
   display: flex;
-  justify-content: space-between;
+  gap: 4rem;
+  align-items: center;
   list-style: none;
+
+  & a {
+    color: ${(props) => props.theme.textColorPrimary};
+  }
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1rem;
+    font-size: 0.75rem;
+  }
 `;
 
 export const Input = styled.input`
   height: 0;
   width: 0;
-  visibility: hidden;
+  display: none;
 
   &:checked + label {
-    background: #fff;
+    border: ${(props) => props.theme.borderToggler};
   }
 
   &:checked + label:after {
-    left: 100%;
+    left: 94%;
     transform: translateX(-100%);
     border-color: #030304;
   }
@@ -63,5 +85,15 @@ export const Label = styled.label`
     border: 1px solid #fff;
     border-radius: 50%;
     transition: 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    width: 2rem;
+    height: 1rem;
+
+    &:after {
+      width: 0.6rem;
+      height: 0.6rem;
+    }
   }
 `;

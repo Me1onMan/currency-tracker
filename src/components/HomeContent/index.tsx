@@ -1,63 +1,50 @@
-// import CurrencyAPI from '@everapi/currencyapi-js';
 import axios from "axios";
+import Card from "components/Card/index";
+import UpdateIndicator from "components/UpdateIndicator/index";
 import React, { useEffect, useState } from "react";
 
-import { currencyNames, targetCurrencies } from "../../constants/currency";
-import Card from "../Card/index";
-import UpdateIndicator from "../UpdateIndicator/index";
+// @ts-expect-error @ as src
 import {
-  CardsContainer,
-  Main,
-  Quotes,
-  SectionHeader,
-  // Stocks,
-} from "./styled";
+  CurrencyNames,
+  currencyNames,
+  targetCurrencies,
+} from "@/constants/currency";
+
+import { CardsContainer, Main, Quotes, SectionHeader } from "./styled";
 
 type currencyResponse = {
   meta: { last_updated_at: string };
   data: {
     [currencyCode: string]: {
       code: string;
+      name?: string;
       value: number;
     };
   };
 };
 
-type currencyDataWithNamesType = {
-  meta: { last_updated_at: string };
-  data: {
-    [currencyCode: string]: {
-      code: string;
-      name: string;
-      value: number;
-    };
-  };
+const formatDate = (milliseconds: number): string => {
+  const date = new Date(milliseconds);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${day}.${month}.${year}`;
 };
 
 function HomeContent(): JSX.Element {
-  // const client = new CurrencyAPI('cur_live_A1EqusuOPUwszJMymwnAoeqG1muIzyr1X7CwNn4t');
-  const [responseData, setResponseData] =
-    useState<currencyDataWithNamesType | null>(null);
-
-  // useEffect(() => {
-  //   client.latest({
-  //     base_currency: 'USD',
-  //     currencies: targetCurrencies
-  //   }).then((response: currencyResponse) => {
-  //     // console.log("GET RESPONSE");
-  //     setResponseData(response);
-  //   });
-  // },[]);
+  const [responseData, setResponseData] = useState<currencyResponse | null>(
+    null,
+  );
 
   function saveTargetCurrenciesData(
     currenciesData: currencyResponse,
-  ): currencyDataWithNamesType {
-    const currencyDataWithName: currencyDataWithNamesType = {
+  ): currencyResponse {
+    const currencyDataWithName: currencyResponse = {
       meta: currenciesData.meta,
       data: {},
     };
 
-    targetCurrencies.forEach((code) => {
+    targetCurrencies.forEach((code: CurrencyNames) => {
       currencyDataWithName.data[code] = {
         code,
         name: currencyNames[code],
@@ -69,22 +56,31 @@ function HomeContent(): JSX.Element {
 
   useEffect(() => {
     if (localStorage.getItem("currencyData")) {
-      setResponseData(
-        saveTargetCurrenciesData(
-          JSON.parse(localStorage.getItem("currencyData")),
-        ),
+      const data: currencyResponse = JSON.parse(
+        localStorage.getItem("currencyData"),
       );
-      return;
+
+      const currentDate = new Date().getTime();
+      const updatedAt = new Date(data.meta.last_updated_at).getTime();
+
+      if (formatDate(updatedAt) === formatDate(currentDate)) {
+        setResponseData(
+          saveTargetCurrenciesData(
+            JSON.parse(localStorage.getItem("currencyData")),
+          ),
+        );
+        return;
+      }
     }
     axios
       .get(
         "https://api.currencyapi.com/v3/latest?apikey=cur_live_A1EqusuOPUwszJMymwnAoeqG1muIzyr1X7CwNn4t",
       )
       .then((response: { data: currencyResponse }) => {
-        console.log("SEND REQUEST...");
         localStorage.setItem("currencyData", JSON.stringify(response.data));
-        const currencyDataWithName: currencyDataWithNamesType =
-          saveTargetCurrenciesData(response.data);
+        const currencyDataWithName: currencyResponse = saveTargetCurrenciesData(
+          response.data,
+        );
         setResponseData(currencyDataWithName);
       })
       .catch((error) => {
@@ -95,20 +91,17 @@ function HomeContent(): JSX.Element {
   return (
     <Main>
       {responseData && (
-        <UpdateIndicator lastUpdatedAt={responseData.meta.last_updated_at} />
+        <UpdateIndicator
+          lastUpdatedAt={formatDate(
+            new Date(responseData.meta.last_updated_at).getTime(),
+          )}
+        />
       )}
-      {/* <Stocks>
-        <SectionHeader>Stocks</SectionHeader>
-        <CardsContainer>
-          <Card currencyCode="USD" currencies={responseData.data} key="USD"/>
-          <Card currencyCode="EUR" currencies={responseData.data} key="EUR"/>
-        </CardsContainer>
-      </Stocks> */}
       <Quotes>
         <SectionHeader>Quotes</SectionHeader>
         <CardsContainer>
           {responseData &&
-            targetCurrencies.map((el) => (
+            targetCurrencies.map((el: string) => (
               <Card currencyCode={el} currencies={responseData.data} key={el} />
             ))}
         </CardsContainer>

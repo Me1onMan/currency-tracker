@@ -12,6 +12,7 @@ module.exports = {
   },
   devServer: {
     port: 3000,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "./public/index.html" }),
@@ -20,9 +21,14 @@ module.exports = {
   ],
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      components: path.resolve(__dirname, "src/components"),
+    },
   },
   module: {
     rules: [
+      //удалить
       {
         test: /\.(css)$/,
         use: ["style-loader", "css-loader"],

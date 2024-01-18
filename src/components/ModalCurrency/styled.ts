@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ModalWrapper = styled.div`
   position: fixed;
+  z-index: 9999;
   left: 0;
   top: 0;
   width: 100vw;
@@ -13,14 +14,14 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  width: 50vw;
+  width: 70vw;
   height: 80vh;
   display: flex;
   gap: 20px;
   flex-direction: column;
   align-items: center;
-  background-color: #202025;
-  border-radius: 100px;
+  background-color: ${(props) => props.theme.bgColorSecondary};
+  border-radius: 16px;
   padding: 5%;
   /* overflow: scroll; */
 
@@ -31,17 +32,18 @@ export const ModalContainer = styled.div`
 
 export const Header = styled.h3`
   font-weight: 400;
-  font-size: 35px;
-  color: #d9d9d9;
+  font-size: 1.5rem;
+  color: ${(props) => props.theme.textColorCardPrimary};
 `;
 
 export const Input = styled.input`
-  background-color: #474747;
-  font-size: 24px;
-  padding: 8px 12px;
+  background-color: ${(props) => props.theme.bgColorInput};
+  /* font-size: 1.5rem; */
+  padding: 0.5rem 0.75rem;
   border: 2px solid #909090;
   border-radius: 16px;
   outline: none;
+  color: ${(props) => props.theme.textColorCardSecondary};
 `;
 
 export const DropdownDiv = styled.div`
@@ -53,25 +55,27 @@ export const DropdownDiv = styled.div`
 
 export const DropdownBtn = styled.button`
   cursor: pointer;
-  background-color: #474747;
-  border: none;
+  background-color: ${(props) => props.theme.bgColorInput};
+  border: 2px solid #909090;
   border-radius: 16px;
-  padding: 8px 16px;
-  font-size: 24px;
+  padding: 0.5rem 0.75rem;
+  /* font-size: 1.5rem; */
   text-align: left;
+  color: ${(props) => props.theme.textColorCardSecondary};
 `;
 
 export const List = styled.ul`
   position: absolute;
   list-style-type: none;
-  background-color: #474747;
+  background-color: ${(props) => props.theme.bgColorInput};
   border-radius: 16px;
-  max-height: 250px;
+  max-height: 15rem;
   overflow-y: scroll;
 `;
 
 export const Item = styled.li`
   border-radius: 16px;
+  ${(props) => props.theme.textColorCardSecondary}
   &:hover {
     background-color: #393939;
   }
@@ -81,21 +85,23 @@ export const ItemBtn = styled.button`
   width: 100%;
   height: 100%;
   text-align: left;
-  font-size: 24px;
+  /* font-size: 1.5rem; */
+  color: ${(props) => props.theme.textColorCardSecondary};
 
   background: none;
   border: none;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
 `;
 
 export const CloseBtn = styled.button`
   cursor: pointer;
   margin-top: auto;
-  background-color: #474747;
+  background-color: ${(props) => props.theme.bgColorInput};
   border: none;
   border-radius: 16px;
-  padding: 8px;
+  padding: 0.5rem;
   max-width: 40%;
-  font-size: 24px;
+  /* font-size: 1.5rem; */
+  color: ${(props) => props.theme.textColorCardSecondary};
 `;

@@ -1,6 +1,11 @@
 {
   "settings": {
-    "import/resolver": "webpack"
+    "import/resolver": {
+      "webpack": {},
+      "node": {
+        "extensions": [".ts", ".tsx", ".native.js"]
+      }
+    }
   },
   "env": {
     "browser": true,
@@ -37,6 +42,22 @@
         "jsx": "never",
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
       }
     ]
   },

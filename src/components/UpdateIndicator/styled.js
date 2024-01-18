@@ -9,7 +9,7 @@ export const UpdateInfo = styled.div`
 
   font-size: 32px;
   font-weight: 200;
-  color: #d9d9d9;
+  color: ${(props) => props.theme.textColorPrimary};
 `;
 
 export const Indicator = styled.div`

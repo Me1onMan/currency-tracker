@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
 html {
- background-color: #030304;
+ background-color: ${(props) => props.theme.bgColorPrimary};
 }
 
 * {
@@ -12,5 +12,15 @@ html {
     font-family: 'Poppins', sans-serif;
     color: #fff;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00c459;
+    cursor: pointer;
+}
 `;
+
 export default Global;
