@@ -2,7 +2,7 @@
 
 ## Deploy
 
-[Currency tracker](https://65a7bc57c62c0502d52e43c0--papaya-travesseiro-be3426.netlify.app)
+[Currency-tracker-shklyar](https://currency-tracker-shklyar.netlify.app)
 
 ## Содержание
 
