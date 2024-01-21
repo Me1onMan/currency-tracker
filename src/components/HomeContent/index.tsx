@@ -1,14 +1,15 @@
-import axios from "axios";
-import Card from "components/Card/index";
-import UpdateIndicator from "components/UpdateIndicator/index";
-import React, { useEffect, useState } from "react";
-
 // @ts-expect-error @ as src
-import {
-  CurrencyNames,
-  currencyNames,
-  targetCurrencies,
-} from "@/constants/currency";
+import Card from "@components/Card/index";
+// @ts-expect-error @ as src
+import UpdateIndicator from "@components/UpdateIndicator/index";
+// @ts-expect-error @ as src
+import { targetCurrencies } from "@constants/currency";
+// @ts-expect-error @ as src
+import { formatDateReadable } from "@utils/formatDate";
+// @ts-expect-error @ as src
+import { getCurrenciesWithNames } from "@utils/getCurrenciesWithNames";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 import { CardsContainer, Main, Quotes, SectionHeader } from "./styled";
 
@@ -23,36 +24,10 @@ type currencyResponse = {
   };
 };
 
-const formatDate = (milliseconds: number): string => {
-  const date = new Date(milliseconds);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${day}.${month}.${year}`;
-};
-
 function HomeContent(): JSX.Element {
   const [responseData, setResponseData] = useState<currencyResponse | null>(
     null,
   );
-
-  function saveTargetCurrenciesData(
-    currenciesData: currencyResponse,
-  ): currencyResponse {
-    const currencyDataWithName: currencyResponse = {
-      meta: currenciesData.meta,
-      data: {},
-    };
-
-    targetCurrencies.forEach((code: CurrencyNames) => {
-      currencyDataWithName.data[code] = {
-        code,
-        name: currencyNames[code],
-        value: currenciesData.data[code].value,
-      };
-    });
-    return currencyDataWithName;
-  }
 
   useEffect(() => {
     if (localStorage.getItem("currencyData")) {
@@ -63,9 +38,9 @@ function HomeContent(): JSX.Element {
       const currentDate = new Date().getTime();
       const updatedAt = new Date(data.meta.last_updated_at).getTime();
 
-      if (formatDate(updatedAt) === formatDate(currentDate)) {
+      if (formatDateReadable(updatedAt) === formatDateReadable(currentDate)) {
         setResponseData(
-          saveTargetCurrenciesData(
+          getCurrenciesWithNames(
             JSON.parse(localStorage.getItem("currencyData")),
           ),
         );
@@ -78,7 +53,7 @@ function HomeContent(): JSX.Element {
       )
       .then((response: { data: currencyResponse }) => {
         localStorage.setItem("currencyData", JSON.stringify(response.data));
-        const currencyDataWithName: currencyResponse = saveTargetCurrenciesData(
+        const currencyDataWithName: currencyResponse = getCurrenciesWithNames(
           response.data,
         );
         setResponseData(currencyDataWithName);
@@ -89,10 +64,10 @@ function HomeContent(): JSX.Element {
   }, []);
 
   return (
-    <Main>
+    <Main id="cy-home">
       {responseData && (
         <UpdateIndicator
-          lastUpdatedAt={formatDate(
+          lastUpdatedAt={formatDateReadable(
             new Date(responseData.meta.last_updated_at).getTime(),
           )}
         />

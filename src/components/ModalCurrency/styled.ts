@@ -23,7 +23,7 @@ export const ModalContainer = styled.div`
   background-color: ${(props) => props.theme.bgColorSecondary};
   border-radius: 16px;
   padding: 5%;
-  /* overflow: scroll; */
+  overflow: auto;
 
   & * {
     width: 80%;
@@ -38,7 +38,6 @@ export const Header = styled.h3`
 
 export const Input = styled.input`
   background-color: ${(props) => props.theme.bgColorInput};
-  /* font-size: 1.5rem; */
   padding: 0.5rem 0.75rem;
   border: 2px solid #909090;
   border-radius: 16px;
@@ -59,7 +58,6 @@ export const DropdownBtn = styled.button`
   border: 2px solid #909090;
   border-radius: 16px;
   padding: 0.5rem 0.75rem;
-  /* font-size: 1.5rem; */
   text-align: left;
   color: ${(props) => props.theme.textColorCardSecondary};
 `;
@@ -85,7 +83,6 @@ export const ItemBtn = styled.button`
   width: 100%;
   height: 100%;
   text-align: left;
-  /* font-size: 1.5rem; */
   color: ${(props) => props.theme.textColorCardSecondary};
 
   background: none;
@@ -102,6 +99,5 @@ export const CloseBtn = styled.button`
   border-radius: 16px;
   padding: 0.5rem;
   max-width: 40%;
-  /* font-size: 1.5rem; */
   color: ${(props) => props.theme.textColorCardSecondary};
 `;

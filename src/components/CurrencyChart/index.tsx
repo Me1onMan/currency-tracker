@@ -1,4 +1,5 @@
-import { format } from "date-fns";
+// @ts-expect-error @ as src
+import { formatDateReadable } from "@utils/formatDate";
 import React from "react";
 import { Chart } from "react-google-charts";
 
@@ -45,7 +46,7 @@ class CurrencyChart extends React.Component<IProps, IState> {
 
   static getDerivedStateFromProps({ responseData }: IProps) {
     const nextChartData = responseData.map((el) => [
-      `${format(el.time_period_start, "dd.MM")}`,
+      `${formatDateReadable(el.time_period_start)}`,
       el.rate_low,
       el.rate_open,
       el.rate_close,
@@ -60,15 +61,6 @@ class CurrencyChart extends React.Component<IProps, IState> {
 
   render() {
     const { chartData } = this.state;
-    // const { responseData } = this.props;
-    // const chartData = responseData.map((el) => [
-    //   `${format(el.time_period_start, "dd.MM")}`,
-    //   el.rate_low,
-    //   el.rate_open,
-    //   el.rate_close,
-    //   el.rate_high,
-    // ]);
-    // chartData.unshift(["Day", "", "", "", ""]);
 
     return (
       <Chart

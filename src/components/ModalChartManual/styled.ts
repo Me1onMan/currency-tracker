@@ -16,16 +16,13 @@ export const ModalContainer = styled.div`
   width: 70vw;
   height: 80vh;
   display: flex;
-  gap: 20px;
+  gap: 0.5rem;
   flex-direction: column;
   align-items: center;
   background-color: ${(props) => props.theme.bgColorSecondary};
-  border-radius: 100px;
+  border-radius: 1rem;
   padding: 5%;
-
-  /* & * {
-    font-size: 24px;
-  } */
+  overflow-y: auto;
 `;
 
 export const Select = styled.select`
@@ -41,12 +38,18 @@ export const Select = styled.select`
 export const InputGridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   grid-gap: 0.75rem;
   width: 90%;
 
   & label {
     color: ${(props) => props.theme.textColorPrimary};
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-gap: 0.25rem;
   }
 `;
 

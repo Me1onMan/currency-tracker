@@ -4,7 +4,7 @@ import { Main, Text } from "./styled";
 
 function Contacts() {
   return (
-    <Main>
+    <Main id="cy-contacts">
       <Text>This page is in development...</Text>
     </Main>
   );

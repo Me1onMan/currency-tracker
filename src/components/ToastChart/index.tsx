@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 
-import { ToastSuccess } from "./styled";
+import { ModalWrapper, ToastSuccess } from "./styled";
 
 export default class ToastChart extends Component {
   render() {
-    return <ToastSuccess>ToastChart</ToastSuccess>;
+    return (
+      <ModalWrapper>
+        <ToastSuccess>ToastChart</ToastSuccess>
+      </ModalWrapper>
+    );
   }
 }

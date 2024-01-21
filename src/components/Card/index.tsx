@@ -1,9 +1,9 @@
-import ModalCurrency from "components/ModalCurrency/index";
+// @ts-expect-error @ as src
+import ModalCurrency from "@components/ModalCurrency/index";
+// @ts-expect-error @ as src
+import useImageLoader from "@utils/useImageLoader";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-
-// @ts-expect-error @ as src
-import useImageLoader from "@/utils/useImageLoader";
 
 import { CardContainer, Icon, TextContainer, Title, Value } from "./styled";
 
@@ -41,7 +41,7 @@ function Card({ currencyCode, currencies }: CardContentProps): JSX.Element {
 
   return (
     <>
-      <CardContainer onClick={openModal}>
+      <CardContainer className="cy-card" onClick={openModal}>
         <Icon src={icon} />
         <TextContainer>
           <Title>{currencies[currencyCode].name}</Title>

@@ -1,10 +1,9 @@
+import logo from "@assets/diagram-svgrepo-com-1.png";
+// @ts-expect-error @ as src
+import { useTheme } from "@contexts/ThemeProvider";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import logo from "@/assets/diagram-svgrepo-com-1.png";
-
-// @ts-expect-error @ as src
-import { useTheme } from "@/contexts/ThemeContext";
 import { Input, Label, Logo, Nav, NavbarContainer, NavList } from "./styled";
 
 function NavLinks(): JSX.Element {
@@ -39,7 +38,7 @@ function ThemeSwitcher(): JSX.Element {
         checked={theme === "light"}
         onChange={toggleTheme}
       />
-      <Label htmlFor="theme-switcher" />
+      <Label id="cy-theme-toggler" htmlFor="theme-switcher" />
     </>
   );
 }

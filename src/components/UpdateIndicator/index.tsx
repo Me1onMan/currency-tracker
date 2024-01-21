@@ -7,7 +7,6 @@ interface IndicatorProps {
 }
 
 function Loading(): JSX.Element {
-  // console.log("Loading...");
   return <h3>LOADING...</h3>;
 }
 

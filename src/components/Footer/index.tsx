@@ -1,7 +1,6 @@
+import logo from "@assets/diagram-svgrepo-com-1.png";
 import React from "react";
 import { Link } from "react-router-dom";
-
-import logo from "@/assets/diagram-svgrepo-com-1.png";
 
 import {
   Copyright,

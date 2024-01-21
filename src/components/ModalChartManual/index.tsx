@@ -1,4 +1,5 @@
-import { format } from "date-fns";
+// @ts-expect-error @ as src
+import { formatDateReadable } from "@utils/formatDate";
 import React, { ChangeEvent, useState } from "react";
 
 import {
@@ -50,7 +51,7 @@ function ModalChartManual({ onClose, chartData, onChangeValues }: IProps) {
           <option disabled>DATE</option>
           {chartData.map((el) => (
             <option value={el.time_period_start} key={el.time_period_start}>
-              {format(el.time_period_start, "dd.MM.yyyy")}
+              {formatDateReadable(el.time_period_start)}
             </option>
           ))}
         </Select>

@@ -22,12 +22,10 @@ export const TextContainer = styled.div`
 
 export const Title = styled.h3`
   font-weight: 400;
-  /* font-size: 35px; */
   color: ${(props) => props.theme.textColorCardPrimary};
 `;
 
 export const Value = styled.div`
-  /* font-size: 32px; */
   font-weight: 300;
   color: ${(props) => props.theme.textColorCardSecondary};
 `;

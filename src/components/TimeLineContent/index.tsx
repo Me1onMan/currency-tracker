@@ -1,10 +1,23 @@
+// @ts-expect-error @ as src
+import CurrencyChart from "@components/CurrencyChart/index";
+// @ts-expect-error @ as src
+import ModalChartManual from "@components/ModalChartManual/index";
+// @ts-expect-error @ as src
+import ToastChart from "@components/ToastChart";
+// @ts-expect-error @ as src
+import { targetCurrencies } from "@constants/currency";
+// @ts-expect-error @ as src
+import {
+  ChartDataContext,
+  ChartObserver,
+  ChartSubjectInterface,
+} from "@contexts/ChartObserver";
+// @ts-expect-error @ as src
+import { formatDateForRequest } from "@utils/formatDate";
 import axios from "axios";
-import CurrencyChart from "components/CurrencyChart/index";
-import ModalChartManual from "components/ModalChartManual/index";
 import React, { ChangeEvent } from "react";
 import { createPortal } from "react-dom";
 
-import { targetCurrencies } from "../../constants/currency";
 import {
   Container,
   DateInput,
@@ -13,8 +26,6 @@ import {
   OptionsContainer,
   Select,
 } from "./styled";
-import { ChartDataContext } from "../../contexts/ChartObserver";
-import ToastChart from "components/ToastChart";
 
 const CoinAPIKey = "339D80B2-D84C-493C-AA2D-2B69EA31703B";
 
@@ -41,18 +52,12 @@ interface IState {
   isShowToast: boolean;
 }
 
-const formatDate = (milliseconds: number): string => {
-  const date = new Date(milliseconds);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
-
 class TimeLine extends React.Component<IProps, IState> {
-  observer = null;
-
   static contextType? = ChartDataContext;
+
+  observer!: ChartObserver;
+
+  context!: ChartSubjectInterface;
 
   constructor(props: IProps) {
     super(props);
@@ -71,23 +76,24 @@ class TimeLine extends React.Component<IProps, IState> {
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
-
     this.getData();
 
     this.observer = {
-      update: (newData) => {
+      update: (newData: IChartData[]) => {
         console.log("observer.update");
 
         this.setState({ responseData: newData }, () => {
           console.log("Length: ", newData.length);
-          if (newData.length >= 30) {
+          if (newData.length === 30) {
             this.setState({ isShowToast: true });
+            setTimeout(() => {
+              this.setState({ isShowToast: false });
+            }, 2000);
           }
         });
       },
     };
-    this.context.addObserver(this.observer.update);
+    this.context.addObserver(this.observer);
     const newData = this.context.getChartData();
     this.setState({ responseData: newData });
   }
@@ -98,8 +104,8 @@ class TimeLine extends React.Component<IProps, IState> {
 
   getData() {
     const { baseCurrency, targetCurrency, dateFrom, dateTo } = this.state;
-    const dateFromDefault = formatDate(Date.now() - 2678400000);
-    const today = formatDate(Date.now());
+    const dateFromDefault = formatDateForRequest(Date.now() - 2678400000);
+    const today = formatDateForRequest(Date.now());
 
     const config = {
       method: "get",
@@ -116,9 +122,8 @@ class TimeLine extends React.Component<IProps, IState> {
     axios(config)
       .then((response) => {
         console.log("CHART SENT REQUEST...");
-        console.log(response.data);
         localStorage.setItem("chartData", JSON.stringify(response.data));
-        // this.setState({ responseData: response.data });
+        this.setState({ responseData: response.data });
         this.context.updateChart(response.data);
         const newData = this.context.getChartData();
         this.setState({ responseData: newData });
@@ -128,34 +133,12 @@ class TimeLine extends React.Component<IProps, IState> {
       });
   }
 
-  // getRandomValues() {
-  //   const random = (min: number, max: number) => Math.random() * (max - min) + min;
-  //   const result = [];
-  //   const dateNow = formatDate(Date.now() - 2505600000);
-
-  //   for (let i = 0; i < 30; i += 1) {
-  //     const low = random(0, 100);
-  //     const high = random(low + 1, 100);
-  //     const open = random(low, high);
-  //     const close = random(low, high);
-  //     result.push({
-  //       rate_low: low,
-  //       rate_high: high,
-  //       rate_open: open,
-  //       rate_close: close,
-  //       time_period_start: dateNow,
-  //     });
-  //   }
-
-  //   this.setState({ responseData: result });
-  // }
+  getDataForChart() {
+    this.getData();
+  }
 
   openModal() {
     this.setState({ isShowModal: true });
-  }
-
-  getDataForChart() {
-    this.getData();
   }
 
   closeModal() {
@@ -163,12 +146,10 @@ class TimeLine extends React.Component<IProps, IState> {
   }
 
   changeDateFrom(e: ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value);
     this.setState({ dateFrom: e.target.value });
   }
 
   changeDateTo(e: ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value);
     this.setState({ dateTo: e.target.value });
   }
 
@@ -204,7 +185,7 @@ class TimeLine extends React.Component<IProps, IState> {
 
     return (
       <>
-        <Container>
+        <Container id="cy-timeline">
           <OptionsContainer>
             <label>
               From
@@ -213,7 +194,7 @@ class TimeLine extends React.Component<IProps, IState> {
                 value={baseCurrency}
               >
                 <Option disabled>Base currency</Option>
-                {targetCurrencies.map((code) => (
+                {targetCurrencies.map((code: string) => (
                   <Option value={code} key={code}>
                     {code}
                   </Option>
@@ -227,7 +208,7 @@ class TimeLine extends React.Component<IProps, IState> {
                 value={targetCurrency}
               >
                 <Option disabled>Target currency</Option>
-                {targetCurrencies.map((code) => (
+                {targetCurrencies.map((code: string) => (
                   <Option value={code} key={code}>
                     {code}
                   </Option>
@@ -254,7 +235,6 @@ class TimeLine extends React.Component<IProps, IState> {
             </label>
             <OptionBtn onClick={() => this.openModal()}>Manual</OptionBtn>
             <OptionBtn onClick={this.getDataForChart}>Go</OptionBtn>
-            {/* <OptionBtn onClick={() => this.getRandomValues()}>Random</OptionBtn> */}
           </OptionsContainer>
           {responseData && <CurrencyChart responseData={responseData} />}
         </Container>
@@ -263,11 +243,13 @@ class TimeLine extends React.Component<IProps, IState> {
             <ModalChartManual
               onClose={() => this.closeModal()}
               chartData={responseData}
-              onChangeValues={(newEl) => this.changeChartValue(newEl)}
+              onChangeValues={(newEl: IChartData) =>
+                this.changeChartValue(newEl)
+              }
             />,
             modalContainer,
           )}
-        {isShowToast && <ToastChart />}
+        {isShowToast && createPortal(<ToastChart />, modalContainer)}
       </>
     );
   }

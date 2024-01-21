@@ -1,14 +1,14 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 
+// @ts-expect-error @ as src
+import CurrencySearchBar from "@components/CurrencySearchBar";
+// @ts-expect-error @ as src
+import { banks, IBank } from "@constants/banks";
+// @ts-expect-error @ as src
+import { setRandomCurrenciesToBank } from "@utils/setRandomCurrenciesToBank";
 import axios from "axios";
-import CurrencySearchBar from "components/CurrencySearchBar";
 import mapboxgl from "mapbox-gl";
 import React, { Component, createRef } from "react";
-
-// @ts-expect-error @ as src
-import { banks, IBank } from "@/constants/banks";
-// @ts-expect-error @ as src
-import { setRandomCurrenciesToBank } from "@/utils/setRandomCurrenciesToBank";
 
 import { MapContainer, MapContentContainer } from "./styled";
 
@@ -29,7 +29,7 @@ interface ICurrency {
 interface IProps {}
 
 interface IState {
-  banks: IBank[];
+  filledBanks: IBank[];
   mapMarkers: any[];
   searchWord: string;
 }
@@ -41,7 +41,7 @@ export default class BankMapContent extends Component<IProps, IState> {
     super(props);
     this.mapContainerRef = createRef();
     this.state = {
-      banks,
+      filledBanks: [],
       searchWord: "",
       mapMarkers: [],
     };
@@ -49,8 +49,6 @@ export default class BankMapContent extends Component<IProps, IState> {
   }
 
   componentDidMount(): void {
-    const { banks } = this.state;
-
     mapboxgl.accessToken = ACCESS_TOKEN;
     const map = new mapboxgl.Map({
       container: this.mapContainerRef.current,
@@ -61,7 +59,7 @@ export default class BankMapContent extends Component<IProps, IState> {
 
     const mapMarkers: any[] = [];
 
-    banks.forEach((bank) => {
+    banks.forEach((bank: IBank) => {
       const h3 = document.createElement("p");
       h3.innerHTML = bank.name;
       h3.style.color = "#000";
@@ -75,23 +73,27 @@ export default class BankMapContent extends Component<IProps, IState> {
 
     this.setState({ mapMarkers });
 
-    axios
-      .get(
-        "https://api.currencyapi.com/v3/latest?apikey=cur_live_A1EqusuOPUwszJMymwnAoeqG1muIzyr1X7CwNn4t",
-      )
-      .then((response: { data: ICurrency }) => {
-        console.log("SEND REQUEST...");
-        localStorage.setItem("currencyData", JSON.stringify(response.data));
-        this.setState({ banks: setRandomCurrenciesToBank(30) });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (!localStorage.getItem("currencyData")) {
+      axios
+        .get(
+          "https://api.currencyapi.com/v3/latest?apikey=cur_live_A1EqusuOPUwszJMymwnAoeqG1muIzyr1X7CwNn4t",
+        )
+        .then((response: { data: ICurrency }) => {
+          console.log("SEND REQUEST...");
+          localStorage.setItem("currencyData", JSON.stringify(response.data));
+          this.setState({ filledBanks: setRandomCurrenciesToBank(30) });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      this.setState({ filledBanks: setRandomCurrenciesToBank(30) });
+    }
   }
 
   componentDidUpdate(): void {
-    const { banks, searchWord, mapMarkers } = this.state;
-    const filteredBanks = banks.filter((bank) =>
+    const { filledBanks, searchWord, mapMarkers } = this.state;
+    const filteredBanks = filledBanks.filter((bank) =>
       bank.currencies.includes(searchWord),
     );
     if (searchWord === "") {
@@ -120,7 +122,7 @@ export default class BankMapContent extends Component<IProps, IState> {
   render() {
     const { searchWord } = this.state;
     return (
-      <MapContentContainer>
+      <MapContentContainer id="cy-bank-map">
         {localStorage.getItem("currencyData") && (
           <CurrencySearchBar
             handleChange={this.handleChange}

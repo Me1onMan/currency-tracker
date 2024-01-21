@@ -1,4 +1,5 @@
-import { banks, IBank } from "../constants/banks";
+// @ts-expect-error @ as src
+import { banks, IBank } from "@constants/banks";
 
 interface ICurrency {
   meta: { last_updated_at: string };
@@ -24,7 +25,7 @@ const getCurrenciesCodes = () => {
 export const setRandomCurrenciesToBank = (currenciesCount: number): IBank[] => {
   const currenciesResponse = getCurrenciesCodes();
 
-  return banks.map((bank) => {
+  return banks.map((bank: IBank) => {
     for (let i = 0; i < currenciesCount; i++) {
       const currencyCode =
         currenciesResponse[

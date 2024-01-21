@@ -9,7 +9,6 @@ export const SearchContainer = styled.div`
 `;
 
 export const Input = styled.input`
-  /* color: #; */
   padding: 0 0.5rem;
   text-align: center;
   outline: none;

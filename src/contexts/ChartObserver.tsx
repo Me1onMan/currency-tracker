@@ -1,20 +1,28 @@
-import React, { createContext, PureComponent, ReactNode } from "react";
+import React, {
+  Children,
+  createContext,
+  PureComponent,
+  ReactNode,
+} from "react";
 
-type HistoryEntry = [
-  string,
-  string | number,
-  string | number,
-  string | number,
-  string | number,
-];
+interface IChartData {
+  rate_close: number;
+  rate_high: number;
+  rate_low: number;
+  rate_open: number;
+  time_close?: string;
+  time_open?: string;
+  time_period_end?: string;
+  time_period_start: string;
+}
 
-type CurrencyHistoryData = [...HistoryEntry][];
+type CurrencyHistoryData = IChartData[];
 
-interface ChartObserver {
+export interface ChartObserver {
   update: (newData: CurrencyHistoryData) => void;
 }
 
-interface ChartSubjectInterface {
+export interface ChartSubjectInterface {
   addObserver: (subscriber: ChartObserver) => void;
   removeObserver: (subscriber: ChartObserver) => void;
   notifyObservers: () => void;
@@ -30,43 +38,23 @@ export const ChartDataContext = createContext<
   ChartSubjectInterface | undefined
 >(undefined);
 
-class ChartDataProvider extends PureComponent<ChartDataContextProps> {
-  chartSubject = new ChartSubject();
-
-  render() {
-    return (
-      <ChartDataContext.Provider value={this.chartSubject}>
-        {this.props.children}
-      </ChartDataContext.Provider>
-    );
-  }
-}
-
-export default ChartDataProvider;
-
 export class ChartSubject {
-  private chartSubscribers = [];
-  private chartData = [];
+  private chartSubscribers: ChartObserver[] = [];
 
-  addObserver(subscriber) {
+  private chartData: CurrencyHistoryData = [];
+
+  addObserver(subscriber: ChartObserver) {
     console.log("addObserver", subscriber);
 
     this.chartSubscribers.push(subscriber);
   }
 
-  removeObserver(subscriber) {
+  removeObserver(subscriber: ChartObserver) {
     console.log("removeObserver");
 
     this.chartSubscribers = this.chartSubscribers.filter(
       (subjects) => subjects !== subscriber,
     );
-  }
-
-  updateChart(newChartData) {
-    console.log("updateChart");
-    console.log(newChartData);
-
-    this.chartData = newChartData;
   }
 
   notifyObservers() {
@@ -76,8 +64,31 @@ export class ChartSubject {
     );
   }
 
+  updateChart(newChartData: CurrencyHistoryData) {
+    console.log("updateChart");
+    console.log(newChartData);
+
+    this.chartData = newChartData;
+    this.notifyObservers();
+  }
+
   getChartData() {
     console.log("getChartData");
     return this.chartData;
   }
 }
+
+class ChartDataProvider extends PureComponent<ChartDataContextProps> {
+  chartSubject = new ChartSubject();
+
+  render() {
+    const { children } = this.props;
+    return (
+      <ChartDataContext.Provider value={this.chartSubject}>
+        {children}
+      </ChartDataContext.Provider>
+    );
+  }
+}
+
+export default ChartDataProvider;

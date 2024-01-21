@@ -1,7 +1,6 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-
 // @ts-expect-error @ as src
-import { targetCurrencies } from "@/constants/currency";
+import { targetCurrencies } from "@constants/currency";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import {
   CloseBtn,
@@ -80,9 +79,10 @@ function ModalCurrency({
 
   return (
     <ModalWrapper>
-      <ModalContainer>
+      <ModalContainer className="cy-modal">
         <Header>{`${targetCurrency} (${currencies[targetCurrency].name})`}</Header>
         <Input
+          className="cy-input"
           type="number"
           min="0"
           value={inputValue || "0"}
@@ -90,6 +90,7 @@ function ModalCurrency({
         />
         <DropdownDiv>
           <DropdownBtn
+            className="cy-dropdown"
             onClick={handleOpen}
           >{`${selectedCurrency} (${currencies[selectedCurrency].name})`}</DropdownBtn>
           {isOpen && (
@@ -97,6 +98,7 @@ function ModalCurrency({
               {targetCurrencies.map((code: string) => (
                 <Item key={code}>
                   <ItemBtn
+                    className="cy-dropdown-item"
                     onClick={() => selectCurrency(code)}
                   >{`${code} (${currencies[code].name})`}</ItemBtn>
                 </Item>
@@ -104,7 +106,7 @@ function ModalCurrency({
             </List>
           )}
         </DropdownDiv>
-        <Input value={resultValue} readOnly />
+        <Input className="cy-output" value={resultValue} readOnly />
         <CloseBtn onClick={onClose} type="button">
           CLOSE
         </CloseBtn>

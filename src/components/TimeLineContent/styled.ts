@@ -62,7 +62,6 @@ export const OptionsContainer = styled.div`
 
   & > * {
     cursor: pointer;
-    /* font-size: 24px; */
     background-color: ${(props) => props.theme.bgColorSecondary};
     color: ${(props) => props.theme.textColorPrimary};
     padding: 0.25rem 0.75rem;
@@ -100,10 +99,8 @@ export const Option = styled.option``;
 
 export const DateInput = styled.input`
   cursor: pointer;
-  /* font-size: 24px; */
   background-color: ${(props) => props.theme.bgColorSecondary};
   color: ${(props) => props.theme.textColorPrimary};
-  /* padding: 4px 16px; */
   border: none;
   width: 90%;
 `;

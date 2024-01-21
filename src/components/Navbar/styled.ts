@@ -16,6 +16,10 @@ export const NavbarContainer = styled.div`
   background-color: ${(props) => props.theme.bgColorPrimary};
   height: 5rem;
   padding: 0 3rem;
+
+  @media (max-width: 480px) {
+    padding: 0 0.5rem;
+  }
 `;
 
 export const Nav = styled.nav`

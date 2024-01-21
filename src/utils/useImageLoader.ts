@@ -6,7 +6,7 @@ export default function useImageLoader(imagePath: string) {
   useEffect(() => {
     const loadImage = async () => {
       try {
-        const module = await import(`@/assets/${imagePath}`);
+        const module = await import(`@assets/${imagePath}`);
         setImageSrc(module.default);
       } catch (error) {
         throw new Error(`Error loading image: ${error}`);

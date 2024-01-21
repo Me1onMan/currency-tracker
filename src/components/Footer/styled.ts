@@ -42,7 +42,6 @@ export const LogoName = styled.p`
 `;
 
 export const FooterDescription = styled.p`
-  /* font-size: 24px; */
   font-weight: 200;
   max-width: 30rem;
   margin-top: 1rem;
