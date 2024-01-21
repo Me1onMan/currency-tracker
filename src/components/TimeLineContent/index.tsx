@@ -6,11 +6,11 @@ import ModalChartManual from "@components/ModalChartManual/index";
 import ToastChart from "@components/ToastChart";
 // @ts-expect-error @ as src
 import { targetCurrencies } from "@constants/currency";
-// @ts-expect-error @ as src
 import {
   ChartDataContext,
   ChartObserver,
   ChartSubjectInterface,
+  // @ts-expect-error @ as src
 } from "@contexts/ChartObserver";
 // @ts-expect-error @ as src
 import { formatDateForRequest } from "@utils/formatDate";
