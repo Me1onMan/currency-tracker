@@ -6,11 +6,11 @@ import UpdateIndicator from "@components/UpdateIndicator/index";
 import { targetCurrencies } from "@constants/currency";
 // @ts-expect-error @ as src
 import { formatDateReadable } from "@utils/formatDate";
+// @ts-expect-error @ as src
+import useNamedCurrencyData from "@utils/useNamedCurrencyData";
 import React from "react";
 
 import { CardsContainer, Main, Quotes, SectionHeader } from "./styled";
-// @ts-expect-error @ as src
-import useNamedCurrencyData from "@utils/useNamedCurrencyData";
 
 function HomeContent(): JSX.Element {
   const responseData = useNamedCurrencyData();
