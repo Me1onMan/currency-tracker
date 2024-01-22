@@ -6,62 +6,14 @@ import UpdateIndicator from "@components/UpdateIndicator/index";
 import { targetCurrencies } from "@constants/currency";
 // @ts-expect-error @ as src
 import { formatDateReadable } from "@utils/formatDate";
-// @ts-expect-error @ as src
-import { getCurrenciesWithNames } from "@utils/getCurrenciesWithNames";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { CardsContainer, Main, Quotes, SectionHeader } from "./styled";
-
-type currencyResponse = {
-  meta: { last_updated_at: string };
-  data: {
-    [currencyCode: string]: {
-      code: string;
-      name?: string;
-      value: number;
-    };
-  };
-};
+// @ts-expect-error @ as src
+import useNamedCurrencyData from "@utils/useNamedCurrencyData";
 
 function HomeContent(): JSX.Element {
-  const [responseData, setResponseData] = useState<currencyResponse | null>(
-    null,
-  );
-
-  useEffect(() => {
-    if (localStorage.getItem("currencyData")) {
-      const data: currencyResponse = JSON.parse(
-        localStorage.getItem("currencyData"),
-      );
-
-      const currentDate = new Date().getTime();
-      const updatedAt = new Date(data.meta.last_updated_at).getTime();
-
-      if (formatDateReadable(updatedAt) === formatDateReadable(currentDate)) {
-        setResponseData(
-          getCurrenciesWithNames(
-            JSON.parse(localStorage.getItem("currencyData")),
-          ),
-        );
-        return;
-      }
-    }
-    axios
-      .get(
-        "https://api.currencyapi.com/v3/latest?apikey=cur_live_A1EqusuOPUwszJMymwnAoeqG1muIzyr1X7CwNn4t",
-      )
-      .then((response: { data: currencyResponse }) => {
-        localStorage.setItem("currencyData", JSON.stringify(response.data));
-        const currencyDataWithName: currencyResponse = getCurrenciesWithNames(
-          response.data,
-        );
-        setResponseData(currencyDataWithName);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const responseData = useNamedCurrencyData();
 
   return (
     <Main id="cy-home">
