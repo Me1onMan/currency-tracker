@@ -1,6 +1,7 @@
-import logo from "@assets/diagram-svgrepo-com-1.png";
-import React from "react";
+import React, { JSX } from "react";
 import { Link } from "react-router-dom";
+import logo from "@assets/diagram-svgrepo-com-1.png";
+import { CONTACTS_ROUTE } from "@constants/routes";
 
 import {
   Copyright,
@@ -34,18 +35,18 @@ function Footer(): JSX.Element {
         <LinksContainer>
           <div>
             <p>General</p>
-            <Link to="/contacts">Market</Link>
-            <Link to="/contacts">Service</Link>
+            <Link to={CONTACTS_ROUTE}>Market</Link>
+            <Link to={CONTACTS_ROUTE}>Service</Link>
           </div>
           <div>
             <p>Product</p>
-            <Link to="/contacts">Sparks</Link>
-            <Link to="/contacts">Snaps</Link>
+            <Link to={CONTACTS_ROUTE}>Sparks</Link>
+            <Link to={CONTACTS_ROUTE}>Snaps</Link>
           </div>
           <div>
             <p>Community</p>
-            <Link to="/contacts">Ideas</Link>
-            <Link to="/contacts">Streams</Link>
+            <Link to={CONTACTS_ROUTE}>Ideas</Link>
+            <Link to={CONTACTS_ROUTE}>Streams</Link>
           </div>
         </LinksContainer>
       </FooterMain>

@@ -1,7 +1,7 @@
-// @ts-expect-error @ as src
+import React, { ChangeEvent, JSX, useState } from "react";
 import { formatDateReadable } from "@utils/formatDate";
-import React, { ChangeEvent, useState } from "react";
 
+import { IChartData, IProps } from "./interfaces";
 import {
   Button,
   Input,
@@ -11,24 +11,11 @@ import {
   Select,
 } from "./styled";
 
-interface IChartData {
-  rate_close: number;
-  rate_high: number;
-  rate_low: number;
-  rate_open: number;
-  time_close?: string;
-  time_open?: string;
-  time_period_end?: string;
-  time_period_start: string;
-}
-
-interface IProps {
-  onClose: () => void;
-  chartData: IChartData[];
-  onChangeValues: (newEl: IChartData) => void;
-}
-
-function ModalChartManual({ onClose, chartData, onChangeValues }: IProps) {
+function ModalChartManual({
+  onClose,
+  chartData,
+  onChangeValues,
+}: IProps): JSX.Element {
   const [selectedDate, setSelectedDate] = useState<IChartData>(chartData[0]);
 
   const changeDate = (e: ChangeEvent<HTMLSelectElement>) => {

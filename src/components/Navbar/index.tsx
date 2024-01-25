@@ -1,8 +1,13 @@
-import logo from "@assets/diagram-svgrepo-com-1.png";
-// @ts-expect-error @ as src
-import { useTheme } from "@contexts/ThemeProvider";
-import React from "react";
+import React, { JSX } from "react";
 import { Link } from "react-router-dom";
+import logo from "@assets/diagram-svgrepo-com-1.png";
+import {
+  BANKS_ROUTE,
+  CHART_ROUTE,
+  CONTACTS_ROUTE,
+  HOME_ROUTE,
+} from "@constants/routes";
+import { useTheme } from "@contexts/ThemeProvider";
 
 import { Input, Label, Logo, Nav, NavbarContainer, NavList } from "./styled";
 
@@ -11,16 +16,16 @@ function NavLinks(): JSX.Element {
     <Nav>
       <NavList>
         <li>
-          <Link to="/">Home</Link>
+          <Link to={HOME_ROUTE}>Home</Link>
         </li>
         <li>
-          <Link to="/timeline">Timeline</Link>
+          <Link to={CHART_ROUTE}>Timeline</Link>
         </li>
         <li>
-          <Link to="/banks">Bank card</Link>
+          <Link to={BANKS_ROUTE}>Bank card</Link>
         </li>
         <li>
-          <Link to="/contacts">Contacts</Link>
+          <Link to={CONTACTS_ROUTE}>Contacts</Link>
         </li>
       </NavList>
     </Nav>

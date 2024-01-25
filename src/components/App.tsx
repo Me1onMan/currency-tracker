@@ -1,33 +1,34 @@
-// @ts-expect-error @ as src
-import { ThemeProvider } from "@contexts/ThemeProvider";
-// @ts-expect-error @ as src
-import BankMapPage from "@pages/BankMapPage";
-// @ts-expect-error @ as src
-import ContactsPage from "@pages/ContactsPage";
-// @ts-expect-error @ as src
-import HomePage from "@pages/HomePage";
-// @ts-expect-error @ as src
-import TimeLinePage from "@pages/TimeLinePage";
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  BANKS_ROUTE,
+  CHART_ROUTE,
+  CONTACTS_ROUTE,
+  HOME_ROUTE,
+} from "@constants/routes";
+import { ThemeProvider } from "@contexts/ThemeProvider";
+import BankMapPage from "@pages/BankMapPage";
+import ContactsPage from "@pages/ContactsPage";
+import HomePage from "@pages/HomePage";
+import TimeLinePage from "@pages/TimeLinePage";
 
 import Global from "./styled";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: HOME_ROUTE,
     element: <HomePage />,
   },
   {
-    path: "/timeline",
+    path: CHART_ROUTE,
     element: <TimeLinePage />,
   },
   {
-    path: "/banks",
+    path: BANKS_ROUTE,
     element: <BankMapPage />,
   },
   {
-    path: "/contacts",
+    path: CONTACTS_ROUTE,
     element: <ContactsPage />,
   },
 ]);

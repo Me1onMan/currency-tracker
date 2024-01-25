@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { useEffect, useState } from "react";
+
 import { formatDateReadable } from "./formatDate";
 
 type currencyResponse = {
@@ -13,9 +13,9 @@ type currencyResponse = {
   };
 };
 
-// api key should be in another file (.env)
-const URL_API =
-  "https://api.currencyapi.com/v3/latest?apikey=cur_live_A1EqusuOPUwszJMymwnAoeqG1muIzyr1X7CwNn4t";
+const apiRequest = process.env.CURRENCY_API_REQUEST;
+const apiKey = process.env.CURRENCY_API_KEY;
+const URL_API = `${apiRequest}${apiKey}`;
 const CURRENCIES_LOCAL_STORAGE = "currencyData";
 
 export default async function getCurrencyData() {
@@ -44,37 +44,3 @@ export default async function getCurrencyData() {
     throw new Error(`Error occurred while fetching: ${error}`);
   }
 }
-
-// export function useCurrencyData() {
-//     const [currencyData, setCurrencyData] = useState<currencyResponse | undefined>();
-
-//     useEffect(() => {
-//         const loadData = async () => {
-//             await axios
-//             .get(URL_API)
-//             .then((response: { data: currencyResponse }) => {
-//               localStorage.setItem(CURRENCIES_LOCAL_STORAGE, JSON.stringify(response.data));
-//               setCurrencyData(response.data);
-//             })
-//             .catch((error) => {
-//                 throw new Error(`Error load data from currencyapi.com: ${error}`);
-//             });
-//         }
-
-//         const responseData: currencyResponse = JSON.parse(localStorage.getItem(CURRENCIES_LOCAL_STORAGE));
-
-//         if (!responseData) {
-//             loadData();
-//         } else if (
-//             formatDateReadable(responseData.meta.last_updated_at) !==
-//             formatDateReadable(Date.now())
-//             ) {
-//             loadData();
-//         } else {
-//             setCurrencyData(responseData);
-//         }
-
-//     }, [])
-
-//     return currencyData;
-// }

@@ -1,5 +1,5 @@
+import React, { JSX } from "react";
 import logo from "@assets/diagram-svgrepo-com-1.png";
-import React from "react";
 
 import {
   DescriptionContainer,

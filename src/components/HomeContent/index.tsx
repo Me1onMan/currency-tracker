@@ -1,14 +1,9 @@
-// @ts-expect-error @ as src
+import React, { JSX } from "react";
 import Card from "@components/Card/index";
-// @ts-expect-error @ as src
 import UpdateIndicator from "@components/UpdateIndicator/index";
-// @ts-expect-error @ as src
 import { targetCurrencies } from "@constants/currency";
-// @ts-expect-error @ as src
 import { formatDateReadable } from "@utils/formatDate";
-// @ts-expect-error @ as src
 import useNamedCurrencyData from "@utils/useNamedCurrencyData";
-import React from "react";
 
 import { CardsContainer, Main, Quotes, SectionHeader } from "./styled";
 

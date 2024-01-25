@@ -1,40 +1,9 @@
-// @ts-expect-error @ as src
-import { formatDateReadable } from "@utils/formatDate";
 import React from "react";
 import { Chart } from "react-google-charts";
+import { formatDateReadable } from "@utils/formatDate";
 
-const options = {
-  legend: "none",
-  color: "#fff",
-  bar: { groupWidth: "50%" },
-  backgroundColor: "none",
-  candlestick: {
-    fallingColor: { strokeWidth: 0, fill: "#f03646" },
-    risingColor: { strokeWidth: 0, fill: "#00c789" },
-  },
-  chartArea: {
-    backgroundColor: "none",
-  },
-};
-
-interface IChartData {
-  rate_close: number;
-  rate_high: number;
-  rate_low: number;
-  rate_open: number;
-  time_close?: string;
-  time_open?: string;
-  time_period_end?: string;
-  time_period_start: string;
-}
-
-interface IProps {
-  responseData: IChartData[];
-}
-
-interface IState {
-  chartData: IChartData[] | null;
-}
+import { CHART_OPTIONS } from "./config";
+import { IProps, IState } from "./interfaces";
 
 class CurrencyChart extends React.Component<IProps, IState> {
   constructor(props: IProps) {
@@ -68,7 +37,7 @@ class CurrencyChart extends React.Component<IProps, IState> {
         width="100%"
         height="400px"
         data={chartData}
-        options={options}
+        options={CHART_OPTIONS}
       />
     );
   }

@@ -1,7 +1,7 @@
-// @ts-expect-error @ as src
+import React, { ChangeEvent, JSX, useEffect, useState } from "react";
 import { targetCurrencies } from "@constants/currency";
-import React, { ChangeEvent, useEffect, useState } from "react";
 
+import { IProps } from "./interfaces";
 import {
   CloseBtn,
   DropdownBtn,
@@ -14,20 +14,6 @@ import {
   ModalContainer,
   ModalWrapper,
 } from "./styled";
-
-type allCurrenciesType = {
-  [currencyCode: string]: {
-    code: string;
-    name?: string;
-    value: number;
-  };
-};
-
-interface ModalContentProps {
-  onClose: () => void;
-  targetCurrency: string;
-  currencies: allCurrenciesType;
-}
 
 const convert = (
   fromValue: number,
@@ -42,7 +28,7 @@ function ModalCurrency({
   onClose,
   targetCurrency,
   currencies,
-}: ModalContentProps): JSX.Element {
+}: IProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState(targetCurrencies[0]);
   const [inputValue, setInputValue] = useState<number>(1);

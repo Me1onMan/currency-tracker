@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import getCurrencyData from "./getCurrencyData";
+
 import { getCurrenciesWithNames } from "./getCurrenciesWithNames";
+import getCurrencyData from "./getCurrencyData";
 
 type currencyResponse = {
   meta: { last_updated_at: string };
@@ -24,7 +25,7 @@ export default function useNamedCurrencyData() {
         const currencyWithNames = getCurrenciesWithNames(responseData);
         setNamedCurrencyData(currencyWithNames);
       } catch (error) {
-        throw new Error("Error while loading currency data: " + error);
+        throw new Error(`Error while loading currency data: ${error}`);
       }
     };
 

@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React, { JSX } from "react";
 
 import { ModalWrapper, ToastSuccess } from "./styled";
 
-export default class ToastChart extends Component {
-  render() {
-    return (
-      <ModalWrapper>
-        <ToastSuccess>ToastChart</ToastSuccess>
-      </ModalWrapper>
-    );
-  }
+export default function ToastChart(): JSX.Element {
+  return (
+    <ModalWrapper>
+      <ToastSuccess>Chart was successfully created!</ToastSuccess>
+    </ModalWrapper>
+  );
 }

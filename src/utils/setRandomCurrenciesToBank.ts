@@ -1,4 +1,3 @@
-// @ts-expect-error @ as src
 import { banks, IBank } from "@constants/banks";
 
 interface ICurrency {

@@ -2,6 +2,7 @@ import React, { useContext, useMemo, useState } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
 import { darkTheme, lightTheme } from "../constants/theme";
+
 import MyThemeContext from "./context";
 
 interface IThemeContextProps {
@@ -34,7 +35,6 @@ export function ThemeProvider({ children }: IProps) {
     [currentTheme],
   );
 
-  console.log(currentTheme);
   const themeMode = currentTheme === "dark" ? darkTheme : lightTheme;
 
   return (

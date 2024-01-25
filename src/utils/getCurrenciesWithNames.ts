@@ -1,11 +1,6 @@
-import {
-  CurrencyNames,
-  currencyNames,
-  targetCurrencies,
-  // @ts-expect-error @ as src
-} from "@constants/currency";
+import { currencyNames, targetCurrencies } from "@constants/currency";
 
-type currencyResponse = {
+interface ICurrencies {
   meta: { last_updated_at: string };
   data: {
     [currencyCode: string]: {
@@ -14,17 +9,17 @@ type currencyResponse = {
       value: number;
     };
   };
-};
+}
 
 export const getCurrenciesWithNames = (
-  currenciesData: currencyResponse,
-): currencyResponse => {
-  const currencyDataWithName: currencyResponse = {
+  currenciesData: ICurrencies,
+): ICurrencies => {
+  const currencyDataWithName: ICurrencies = {
     meta: currenciesData.meta,
     data: {},
   };
 
-  targetCurrencies.forEach((code: CurrencyNames) => {
+  targetCurrencies.forEach((code: string) => {
     currencyDataWithName.data[code] = {
       code,
       name: currencyNames[code],
