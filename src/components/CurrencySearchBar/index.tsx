@@ -32,6 +32,9 @@ class CurrencySearchBar extends Component<IProps, IState> {
           onChange={() => handleChange(this.searchRef.current.value)}
           ref={this.searchRef}
         />
+        <ResultItem onClick={() => handleChange("")} type="button">
+          CLEAR
+        </ResultItem>
         {сurrencyCodes && (
           <SearchResults>
             {сurrencyCodes
