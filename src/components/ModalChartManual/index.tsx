@@ -1,4 +1,4 @@
-import React, { ChangeEvent, JSX, useState } from "react";
+import React, { ChangeEvent, JSX, MouseEvent, useState } from "react";
 import { formatDateReadable } from "@utils/formatDate";
 
 import { IChartData, IProps } from "./interfaces";
@@ -31,8 +31,12 @@ function ModalChartManual({
     }));
   };
 
+  const closeModal = (e: MouseEvent<HTMLElement>) => {
+    if (e.target === e.currentTarget) onClose();
+  };
+
   return (
-    <ModalWrapper>
+    <ModalWrapper onClick={closeModal}>
       <ModalContainer>
         <Select value={selectedDate.time_period_start} onChange={changeDate}>
           <option disabled>DATE</option>
@@ -83,7 +87,7 @@ function ModalChartManual({
         <Button onClick={() => onChangeValues(selectedDate)} type="button">
           APPLY
         </Button>
-        <Button onClick={onClose} type="button">
+        <Button onClick={closeModal} type="button">
           RETURN
         </Button>
       </ModalContainer>

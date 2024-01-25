@@ -1,4 +1,10 @@
-import React, { ChangeEvent, JSX, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  JSX,
+  MouseEvent,
+  useEffect,
+  useState,
+} from "react";
 import { targetCurrencies } from "@constants/currency";
 
 import { IProps } from "./interfaces";
@@ -53,6 +59,10 @@ function ModalCurrency({
     setSelectedCurrency(currencyCode);
   };
 
+  const closeModal = (e: MouseEvent<HTMLElement>) => {
+    if (e.target === e.currentTarget) onClose();
+  };
+
   useEffect(() => {
     setResultValue(
       convert(
@@ -64,7 +74,7 @@ function ModalCurrency({
   }, [inputValue, selectedCurrency]);
 
   return (
-    <ModalWrapper>
+    <ModalWrapper onClick={closeModal}>
       <ModalContainer className="cy-modal">
         <Header>{`${targetCurrency} (${currencies[targetCurrency].name})`}</Header>
         <Input
@@ -93,7 +103,7 @@ function ModalCurrency({
           )}
         </DropdownDiv>
         <Input className="cy-output" value={resultValue} readOnly />
-        <CloseBtn onClick={onClose} type="button">
+        <CloseBtn onClick={closeModal} type="button">
           CLOSE
         </CloseBtn>
       </ModalContainer>
