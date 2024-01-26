@@ -12,6 +12,7 @@ import {
 import { formatDateForRequest } from "@utils/formatDate";
 import axios from "axios";
 
+import { checkMaxDate } from "./checkMaxDate";
 import { IChartData, IProps, IState } from "./interfaces";
 import {
   Container,
@@ -73,8 +74,13 @@ class TimeLine extends React.Component<IProps, IState> {
   getData() {
     const { context } = this;
     const { baseCurrency, targetCurrency, dateFrom, dateTo } = this.state;
-    const dateFromDefault = formatDateForRequest(Date.now() - 2678400000);
+    const dateFromDefault = formatDateForRequest(Date.now() - 2592000000); // 30 days ago
     const today = formatDateForRequest(Date.now());
+    this.setState({
+      dateFrom: dateFrom === "" ? dateFromDefault : checkMaxDate(dateFrom),
+      dateTo: dateTo === "" ? today : checkMaxDate(dateTo),
+    });
+
     const apiRequest = process.env.COIN_API_REQUEST;
     const apiKey = process.env.COIN_API_KEY;
 
@@ -104,6 +110,11 @@ class TimeLine extends React.Component<IProps, IState> {
   }
 
   getDataForChart() {
+    const { dateFrom, dateTo } = this.state;
+    this.setState({
+      dateFrom: checkMaxDate(dateFrom),
+      dateTo: checkMaxDate(dateTo),
+    });
     this.getData();
   }
 
@@ -201,6 +212,7 @@ class TimeLine extends React.Component<IProps, IState> {
                 type="date"
                 onChange={this.changeDateTo}
                 value={dateTo}
+                max={formatDateForRequest(Date.now())}
               />
             </label>
             <OptionBtn onClick={() => this.openModal()}>Manual</OptionBtn>
