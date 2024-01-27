@@ -1,6 +1,7 @@
 import React, { JSX, useState } from "react";
 import { createPortal } from "react-dom";
 import ModalCurrency from "@components/ModalCurrency/index";
+import { getIconFileName } from "@utils/getIconFileName";
 import useImageLoader from "@utils/useImageLoader";
 
 import { IProps } from "./interfaces";
@@ -11,10 +12,7 @@ const modalContainer = document.getElementById("modal");
 function Card({ currencyCode, currencies }: IProps): JSX.Element {
   const [showModal, setShowModal] = useState(false);
 
-  const iconFileName = `${currencies[currencyCode].name.replace(
-    " ",
-    "-",
-  )}-Icon.png`;
+  const iconFileName = getIconFileName(currencies[currencyCode].name);
   const icon = useImageLoader(iconFileName);
 
   const openModal = () => {
