@@ -14,13 +14,14 @@ import axios from "axios";
 
 import { checkMaxDate } from "./checkMaxDate";
 import { IChartData, IProps, IState } from "./interfaces";
+import SelectComponent from "./Select";
 import {
   Container,
   DateInput,
-  Option,
+  // Option,
   OptionBtn,
   OptionsContainer,
-  Select,
+  // Select,
 } from "./styled";
 
 class TimeLine extends React.Component<IProps, IState> {
@@ -39,6 +40,8 @@ class TimeLine extends React.Component<IProps, IState> {
       dateTo: "",
       isShowToast: false,
     };
+    this.changeBaseCurrency = this.changeBaseCurrency.bind(this);
+    this.changeTargetCurrency = this.changeTargetCurrency.bind(this);
     this.changeDateFrom = this.changeDateFrom.bind(this);
     this.changeDateTo = this.changeDateTo.bind(this);
     this.getDataForChart = this.getDataForChart.bind(this);
@@ -134,13 +137,21 @@ class TimeLine extends React.Component<IProps, IState> {
     this.setState({ dateTo: e.target.value });
   }
 
-  changeBaseCurrency(e: ChangeEvent<HTMLSelectElement>) {
-    this.setState({ baseCurrency: e.target.value });
+  changeBaseCurrency(value: string) {
+    this.setState({ baseCurrency: value });
   }
 
-  changeTargetCurrency(e: ChangeEvent<HTMLSelectElement>) {
-    this.setState({ targetCurrency: e.target.value });
+  changeTargetCurrency(value: string) {
+    this.setState({ targetCurrency: value });
   }
+
+  // changeBaseCurrency(e: ChangeEvent<HTMLSelectElement>) {
+  //   this.setState({ baseCurrency: e.target.value });
+  // }
+
+  // changeTargetCurrency(e: ChangeEvent<HTMLSelectElement>) {
+  //   this.setState({ targetCurrency: e.target.value });
+  // }
 
   changeChartValue(newEl: IChartData) {
     this.setState((prevState) => ({
@@ -156,19 +167,33 @@ class TimeLine extends React.Component<IProps, IState> {
 
     const {
       baseCurrency,
-      isShowModal,
-      isShowToast,
-      responseData,
       targetCurrency,
       dateFrom,
       dateTo,
+      responseData,
+      isShowModal,
+      isShowToast,
     } = this.state;
 
     return (
       <>
         <Container id="cy-timeline">
           <OptionsContainer>
-            <label>
+            <SelectComponent
+              labelName="From"
+              optionName="Base currency"
+              targetCurrencies={targetCurrencies}
+              selectedCurrency={baseCurrency}
+              onChange={(el: string) => this.changeBaseCurrency(el)}
+            />
+            <SelectComponent
+              labelName="To"
+              optionName="Target currency"
+              targetCurrencies={targetCurrencies}
+              selectedCurrency={targetCurrency}
+              onChange={this.changeTargetCurrency}
+            />
+            {/* <label>
               From
               <Select
                 onChange={(e) => this.changeBaseCurrency(e)}
@@ -195,7 +220,7 @@ class TimeLine extends React.Component<IProps, IState> {
                   </Option>
                 ))}
               </Select>
-            </label>
+            </label> */}
             <label htmlFor="dateFrom">
               From
               <DateInput

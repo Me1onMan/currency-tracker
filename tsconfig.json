@@ -17,7 +17,8 @@
       "@constants/*": ["src/constants/*"],
       "@contexts/*": ["src/contexts/*"],
       "@pages/*": ["src/pages/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@router/*": ["src/router/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "index.d.ts", "cypress/**/*"],

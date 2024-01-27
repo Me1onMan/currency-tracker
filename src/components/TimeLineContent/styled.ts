@@ -54,19 +54,19 @@ export const ItemBtn = styled.button`
 `;
 
 export const OptionsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0.5rem;
   padding: 54px 0;
   width: 90%;
 
-  & > * {
+  & > button {
     cursor: pointer;
     background-color: ${(props) => props.theme.bgColorSecondary};
     color: ${(props) => props.theme.textColorPrimary};
     padding: 0.25rem 0.75rem;
     border: none;
-    width: 15%;
+    /* width: 15%; */
   }
 
   @media (max-width: 990px) {
@@ -83,6 +83,14 @@ export const OptionsContainer = styled.div`
 
     & button {
       justify-content: center;
+    }
+  }
+
+  @media (max-width: 420px) {
+    grid-template-columns: 1fr;
+
+    & > * {
+      justify-content: space-between;
     }
   }
 `;
@@ -105,4 +113,6 @@ export const DateInput = styled.input`
   width: 90%;
 `;
 
-export const OptionBtn = styled.button``;
+export const OptionBtn = styled.button`
+  width: 100%;
+`;
