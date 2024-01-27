@@ -1,4 +1,4 @@
-interface IChartData {
+export interface IChartData {
   rate_close: number;
   rate_high: number;
   rate_low: number;
