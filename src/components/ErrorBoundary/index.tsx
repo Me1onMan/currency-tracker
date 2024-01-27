@@ -28,7 +28,11 @@ class ErrorBoundary extends Component<IProps, IState> {
           <MessageContainer>
             <h1>Oops! It seems you have a mistake</h1>
             <h2>An error occurred</h2>
-            <Image src={errorImage} alt="error occured" />
+            <Image
+              src={errorImage}
+              alt="Error occured"
+              title="Trying to solve problem"
+            />
           </MessageContainer>
         </Wrapper>
       );

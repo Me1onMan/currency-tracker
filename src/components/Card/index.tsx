@@ -26,7 +26,11 @@ function Card({ currencyCode, currencies }: IProps): JSX.Element {
   return (
     <>
       <CardContainer className="cy-card" onClick={openModal}>
-        <Icon src={icon} />
+        <Icon
+          src={icon}
+          alt={currencyCode}
+          title={currencies[currencyCode].name}
+        />
         <TextContainer>
           <Title>{currencies[currencyCode].name}</Title>
           <Value>R$ {currencies[currencyCode].value}</Value>

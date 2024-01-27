@@ -51,7 +51,7 @@ function ThemeSwitcher(): JSX.Element {
 function Navbar(): JSX.Element {
   return (
     <NavbarContainer>
-      <Logo src={logo} alt="logo" />
+      <Logo src={logo} alt="Logo" title="Modsen currency tracker" />
       <NavLinks />
       <ThemeSwitcher />
     </NavbarContainer>

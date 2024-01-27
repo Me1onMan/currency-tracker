@@ -21,7 +21,7 @@ function Header(): JSX.Element {
           Quotes for the dollar and other international currencies.
         </DescriptionText>
       </DescriptionContainer>
-      <Logo src={logo} />
+      <Logo src={logo} alt="Logo" title="Modsen currency tracker" />
     </HeaderContainer>
   );
 }
