@@ -4,6 +4,7 @@ import CurrencyChart from "@components/CurrencyChart/index";
 import ModalChartManual from "@components/ModalChartManual/index";
 import ToastChart from "@components/ToastChart";
 import { targetCurrencies } from "@constants/currency";
+import { CHART_DATA } from "@constants/localStorage";
 import {
   ChartDataContext,
   ChartObserver,
@@ -101,7 +102,7 @@ class TimeLine extends React.Component<IProps, IState> {
 
     axios(config)
       .then((response) => {
-        localStorage.setItem("chartData", JSON.stringify(response.data));
+        localStorage.setItem(CHART_DATA, JSON.stringify(response.data));
         this.setState({ responseData: response.data });
         context.updateChart(response.data);
         const newData = context.getChartData();

@@ -1,3 +1,5 @@
+import { CURRENCIES_DATA } from "@constants/localStorage";
+
 interface ICurrency {
   meta: { last_updated_at: string };
   data: {
@@ -10,7 +12,7 @@ interface ICurrency {
 
 export const getCurrenciesCodes = () => {
   const currenciesResponse: ICurrency = JSON.parse(
-    localStorage.getItem("currencyData"),
+    localStorage.getItem(CURRENCIES_DATA),
   );
   const currenciesCodes = [];
   for (const currency in currenciesResponse.data) {

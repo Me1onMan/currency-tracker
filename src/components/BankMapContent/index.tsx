@@ -1,6 +1,7 @@
 import React, { Component, createRef } from "react";
 import CurrencySearchBar from "@components/CurrencySearchBar";
 import { banks, IBank } from "@constants/banks";
+import { CURRENCIES_DATA } from "@constants/localStorage";
 import { setRandomCurrenciesToBank } from "@utils/setRandomCurrenciesToBank";
 import axios from "axios";
 import mapboxgl from "mapbox-gl";
@@ -49,13 +50,13 @@ export default class BankMapContent extends Component<IProps, IState> {
 
     this.setState({ mapMarkers });
 
-    if (!localStorage.getItem("currencyData")) {
+    if (!localStorage.getItem(CURRENCIES_DATA)) {
       const apiKey = process.env.CURRENCY_API_KEY;
       const apiRequest = process.env.CURRENCY_API_REQUEST;
       axios
         .get(`${apiRequest}${apiKey}`)
         .then((response: { data: ICurrency }) => {
-          localStorage.setItem("currencyData", JSON.stringify(response.data));
+          localStorage.setItem(CURRENCIES_DATA, JSON.stringify(response.data));
           this.setState({ filledBanks: setRandomCurrenciesToBank(30) });
         })
         .catch((error) => {
@@ -98,7 +99,7 @@ export default class BankMapContent extends Component<IProps, IState> {
     const { searchWord } = this.state;
     return (
       <MapContentContainer id="cy-bank-map">
-        {localStorage.getItem("currencyData") && (
+        {localStorage.getItem(CURRENCIES_DATA) && (
           <CurrencySearchBar
             handleChange={this.handleChange}
             searchWord={searchWord}
