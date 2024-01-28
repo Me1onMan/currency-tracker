@@ -9,24 +9,32 @@ import {
 } from "@constants/routes";
 import { useTheme } from "@contexts/ThemeProvider";
 
-import { Input, Label, Logo, Nav, NavbarContainer, NavList } from "./styled";
+import {
+  Input,
+  Label,
+  Logo,
+  Nav,
+  NavbarContainer,
+  NavItem,
+  NavList,
+} from "./styled";
 
 function NavLinks(): JSX.Element {
   return (
     <Nav>
       <NavList>
-        <li>
+        <NavItem>
           <Link to={HOME_ROUTE}>Home</Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <Link to={CHART_ROUTE}>Timeline</Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <Link to={BANKS_ROUTE}>Bank card</Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <Link to={CONTACTS_ROUTE}>Contacts</Link>
-        </li>
+        </NavItem>
       </NavList>
     </Nav>
   );

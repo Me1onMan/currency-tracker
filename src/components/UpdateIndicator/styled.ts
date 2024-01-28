@@ -1,24 +1,28 @@
 import styled from "styled-components";
 
 export const UpdateInfo = styled.div`
-  margin-top: 56px;
+  margin-top: 3rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 1rem;
 
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-weight: 200;
   color: ${(props) => props.theme.textColorPrimary};
 
-  @media (max-width: 480px) {
+  @media (min-width: 420px) {
     font-size: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
   }
 `;
 
 export const Indicator = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   background-color: rgba(0, 188, 79, 1);
   border-radius: 50%;
   animation: flicker 3s infinite;
@@ -35,8 +39,13 @@ export const Indicator = styled.div`
     }
   }
 
-  @media (max-width: 480px) {
-    width: 24px;
-    height: 24px;
+  @media (min-width: 420px) {
+    width: 32px;
+    height: 32px;
+  }
+
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
   }
 `;

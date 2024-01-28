@@ -21,7 +21,7 @@ function Footer(): JSX.Element {
       <FooterMain>
         <FooterContent>
           <LogoContainer>
-            <Logo src={logo} alt="logo" />
+            <Logo src={logo} alt="Logo" title="Modsen currency tracker" />
             <LogoName>Modsen Currency Tracker</LogoName>
           </LogoContainer>
           <FooterDescription>

@@ -1,54 +1,62 @@
 import styled from "styled-components";
 
-export const Logo = styled.img`
-  width: 40px;
-
-  @media (max-width: 768px) {
-    width: 24px;
-  }
-`;
-
 export const NavbarContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${(props) => props.theme.bgColorPrimary};
-  height: 5rem;
-  padding: 0 3rem;
+  width: 100%;
+  padding: 0.75rem 0.5rem;
 
-  @media (max-width: 480px) {
-    padding: 0 0.5rem;
+  background-color: ${(props) => props.theme.bgColorPrimary};
+
+  @media (min-width: 420px) {
+    padding: 1rem;
+  }
+`;
+
+export const Logo = styled.img`
+  width: 16px;
+
+  @media (min-width: 420px) {
+    width: 24px;
+  }
+
+  @media (min-width: 768px) {
+    width: 40px;
   }
 `;
 
 export const Nav = styled.nav`
+  display: flex;
+  justify-content: space-between;
   justify-self: center;
   font-weight: 200;
-
-  @media (max-width: 768px) {
-    font-size: 12px;
-  }
 `;
 
 export const NavList = styled.ul`
   display: flex;
-  gap: 4rem;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
+  font-size: 0.75rem;
 
   & a {
     color: ${(props) => props.theme.textColorPrimary};
   }
 
-  @media (max-width: 768px) {
-    gap: 2rem;
+  @media (min-width: 420px) {
+    gap: 0.5rem;
+    font-size: 1rem;
   }
 
-  @media (max-width: 480px) {
-    gap: 1rem;
-    font-size: 0.75rem;
+  @media (min-width: 768px) {
+    gap: 3rem;
+    font-size: 1.5rem;
   }
+`;
+
+export const NavItem = styled.li`
+  padding: 0.5rem 0.25rem;
 `;
 
 export const Input = styled.input`
@@ -70,8 +78,8 @@ export const Input = styled.input`
 export const Label = styled.label`
   cursor: pointer;
   text-indent: -9999px;
-  width: 52px;
-  height: 32px;
+  width: 36px;
+  height: 20px;
   background: transparent;
   border: 1px solid #fff;
   display: block;
@@ -83,21 +91,21 @@ export const Label = styled.label`
     position: absolute;
     top: 1px;
     left: 1px;
-    width: 26px;
-    height: 26px;
+    width: 14px;
+    height: 14px;
     background: transparent;
     border: 1px solid #fff;
     border-radius: 50%;
     transition: 0.3s;
   }
 
-  @media (max-width: 768px) {
-    width: 2rem;
-    height: 1rem;
+  @media (min-width: 768px) {
+    width: 52px;
+    height: 32px;
 
     &:after {
-      width: 0.6rem;
-      height: 0.6rem;
+      width: 26px;
+      height: 26px;
     }
   }
 `;
