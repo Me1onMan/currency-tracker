@@ -15,7 +15,8 @@ export const OptionsContainer = styled.div`
   padding: 0 5%;
 
   & > * {
-    justify-content: space-between;
+    font-size: 1.25rem;
+    color: ${(props) => props.theme.textColorPrimary};
   }
 
   & > button {
@@ -24,8 +25,6 @@ export const OptionsContainer = styled.div`
 
     background-color: ${(props) => props.theme.bgColorSecondary};
     border: none;
-
-    color: ${(props) => props.theme.textColorPrimary};
   }
 
   @media (min-width: 420px) {
@@ -35,21 +34,6 @@ export const OptionsContainer = styled.div`
 
     font-size: 1.25rem;
   }
-
-  /* @media (min-width: 768px) {
-    grid-template-columns: repeat(6, 1fr);
-
-    & > * {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    & button {
-      justify-content: center;
-    }
-  } */
 `;
 
 export const Select = styled.select`

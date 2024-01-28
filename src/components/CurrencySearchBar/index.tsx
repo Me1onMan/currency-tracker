@@ -2,7 +2,14 @@ import React, { Component, createRef } from "react";
 import { getCurrenciesCodes } from "@utils/getCurrencyCodes";
 
 import { IProps, IState } from "./interfaces";
-import { Input, ResultItem, SearchContainer, SearchResults } from "./styled";
+import {
+  ClearButton,
+  Input,
+  InputContainer,
+  ResultItem,
+  SearchContainer,
+  SearchResults,
+} from "./styled";
 
 class CurrencySearchBar extends Component<IProps, IState> {
   searchRef: React.RefObject<HTMLInputElement | null>;
@@ -26,15 +33,17 @@ class CurrencySearchBar extends Component<IProps, IState> {
     const { сurrencyCodes } = this.state;
     return (
       <SearchContainer>
-        <Input
-          placeholder="Search currency"
-          value={searchWord}
-          onChange={() => handleChange(this.searchRef.current.value)}
-          ref={this.searchRef}
-        />
-        <ResultItem onClick={() => handleChange("")} type="button">
-          CLEAR
-        </ResultItem>
+        <InputContainer>
+          <Input
+            placeholder="Search currency"
+            value={searchWord}
+            onChange={() => handleChange(this.searchRef.current.value)}
+            ref={this.searchRef}
+          />
+          <ClearButton onClick={() => handleChange("")} type="button">
+            CLEAR
+          </ClearButton>
+        </InputContainer>
         {сurrencyCodes && (
           <SearchResults>
             {сurrencyCodes
