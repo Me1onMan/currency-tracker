@@ -17,10 +17,23 @@ export const UpdateInfo = styled.div`
 `;
 
 export const Indicator = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #00bc4f;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 188, 79, 1);
   border-radius: 50%;
+  animation: flicker 3s infinite;
+
+  @keyframes flicker {
+    0% {
+      background-color: rgba(0, 188, 79, 1);
+    }
+    50% {
+      background-color: rgba(0, 188, 79, 0.2);
+    }
+    100% {
+      background-color: rgba(0, 188, 79, 1);
+    }
+  }
 
   @media (max-width: 480px) {
     width: 24px;
