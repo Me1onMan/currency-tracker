@@ -4,42 +4,57 @@ export const ModalWrapper = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
   background: rgba(0, 0, 0, 0.5);
 `;
 
 export const ModalContainer = styled.div`
-  width: 70vw;
-  height: 80vh;
-  display: flex;
-  gap: 0.5rem;
-  flex-direction: column;
-  align-items: center;
-  background-color: ${(props) => props.theme.bgColorSecondary};
-  border-radius: 1rem;
-  padding: 5%;
   overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+
+  width: 80vw;
+  height: 90vh;
+  padding: 5%;
+
+  background-color: ${(props) => props.theme.bgColorSecondary};
+  border-radius: 16px;
 `;
 
 export const Select = styled.select`
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid ${(props) => props.theme.borderColorInput};
-  background-color: ${(props) => props.theme.bgColorInput};
-  color: ${(props) => props.theme.textColorPrimary};
   outline: none;
+
+  padding: 0.25rem 0.5rem;
+
+  background-color: ${(props) => props.theme.bgColorInput};
+  border: 2px solid ${(props) => props.theme.borderColorInput};
+  border-radius: 8px;
+
+  color: ${(props) => props.theme.textColorPrimary};
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 export const InputGridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.75rem;
-  width: 90%;
+  grid-template-columns: 1fr;
+  grid-gap: 0.5rem;
+
+  width: 100%;
 
   & label {
     color: ${(props) => props.theme.textColorPrimary};
@@ -47,26 +62,52 @@ export const InputGridContainer = styled.div`
     flex-direction: column;
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    grid-gap: 0.25rem;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.75rem;
+
+    & label {
+      font-size: 1.25rem;
+    }
   }
 `;
 
 export const Input = styled.input`
   outline: none;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid ${(props) => props.theme.borderColorInput};
+
+  padding: 0.25rem 0.5rem;
+
   background-color: ${(props) => props.theme.bgColorInput};
+  border: 2px solid ${(props) => props.theme.borderColorInput};
+  border-radius: 8px;
+
   color: ${(props) => props.theme.textColorPrimary};
+
+  @media (min-width: 1024px) {
+    font-size: 1.25rem;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
 `;
 
 export const Button = styled.button`
   cursor: pointer;
-  padding: 0.25rem 1rem;
-  border-radius: 0.5rem;
-  border: 2px solid ${(props) => props.theme.borderColorInput};
+
+  width: 40%;
+  padding: 0.25rem 0.5rem;
+
   background-color: ${(props) => props.theme.bgColorInput};
+  border: 2px solid ${(props) => props.theme.borderColorInput};
+  border-radius: 8px;
+
   color: ${(props) => props.theme.textColorPrimary};
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;

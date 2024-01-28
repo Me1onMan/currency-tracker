@@ -4,6 +4,7 @@ import { formatDateReadable } from "@utils/formatDate";
 import { IChartData, IProps } from "./interfaces";
 import {
   Button,
+  ButtonContainer,
   Input,
   InputGridContainer,
   ModalContainer,
@@ -84,12 +85,14 @@ function ModalChartManual({
             />
           </label>
         </InputGridContainer>
-        <Button onClick={() => onChangeValues(selectedDate)} type="button">
-          APPLY
-        </Button>
-        <Button onClick={closeModal} type="button">
-          RETURN
-        </Button>
+        <ButtonContainer>
+          <Button onClick={() => onChangeValues(selectedDate)} type="button">
+            APPLY
+          </Button>
+          <Button onClick={closeModal} type="button">
+            RETURN
+          </Button>
+        </ButtonContainer>
       </ModalContainer>
     </ModalWrapper>
   );
