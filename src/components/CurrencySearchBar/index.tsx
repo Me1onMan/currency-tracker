@@ -28,8 +28,18 @@ class CurrencySearchBar extends Component<IProps, IState> {
     handleChange(code);
   };
 
+  clearSearch = () => {
+    const { handleChange } = this.props;
+    handleChange("");
+  };
+
+  changeSearch = () => {
+    const { handleChange } = this.props;
+    handleChange(this.searchRef.current.value);
+  };
+
   render() {
-    const { handleChange, searchWord } = this.props;
+    const { searchWord } = this.props;
     const { сurrencyCodes } = this.state;
     return (
       <SearchContainer>
@@ -37,10 +47,10 @@ class CurrencySearchBar extends Component<IProps, IState> {
           <Input
             placeholder="Search currency"
             value={searchWord}
-            onChange={() => handleChange(this.searchRef.current.value)}
+            onChange={this.changeSearch}
             ref={this.searchRef}
           />
-          <ClearButton onClick={() => handleChange("")} type="button">
+          <ClearButton onClick={this.clearSearch} type="button">
             CLEAR
           </ClearButton>
         </InputContainer>
