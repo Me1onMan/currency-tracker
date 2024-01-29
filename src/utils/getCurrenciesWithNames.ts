@@ -11,9 +11,7 @@ interface ICurrencies {
   };
 }
 
-export const getCurrenciesWithNames = (
-  currenciesData: ICurrencies,
-): ICurrencies => {
+const getCurrenciesWithNames = (currenciesData: ICurrencies): ICurrencies => {
   const currencyDataWithName: ICurrencies = {
     meta: currenciesData.meta,
     data: {},
@@ -28,3 +26,5 @@ export const getCurrenciesWithNames = (
   });
   return currencyDataWithName;
 };
+
+export default getCurrenciesWithNames;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { getCurrenciesWithNames } from "./getCurrenciesWithNames";
+import getCurrenciesWithNames from "./getCurrenciesWithNames";
 import getCurrencyData from "./getCurrencyData";
 
 type currencyResponse = {

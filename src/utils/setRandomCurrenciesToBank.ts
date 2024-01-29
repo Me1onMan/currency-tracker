@@ -22,7 +22,7 @@ const getCurrenciesCodes = () => {
   return currenciesCodes;
 };
 
-export const setRandomCurrenciesToBank = (currenciesCount: number): IBank[] => {
+const setRandomCurrenciesToBank = (currenciesCount: number): IBank[] => {
   const currenciesResponse = getCurrenciesCodes();
 
   return banks.map((bank: IBank) => {
@@ -38,3 +38,5 @@ export const setRandomCurrenciesToBank = (currenciesCount: number): IBank[] => {
     return bank;
   });
 };
+
+export default setRandomCurrenciesToBank;

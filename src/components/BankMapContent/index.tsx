@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 import CurrencySearchBar from "@components/CurrencySearchBar";
 import { banks, IBank } from "@constants/banks";
 import { CURRENCIES_DATA } from "@constants/localStorage";
-import { setRandomCurrenciesToBank } from "@utils/setRandomCurrenciesToBank";
+import setRandomCurrenciesToBank from "@utils/setRandomCurrenciesToBank";
 import axios from "axios";
 import mapboxgl from "mapbox-gl";
 
