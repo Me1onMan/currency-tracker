@@ -1,5 +1,5 @@
 import React, { ChangeEvent, JSX, MouseEvent, useState } from "react";
-import { formatDateReadable } from "@utils/formatDate";
+import { formatDate } from "@utils/formatDate";
 
 import { IChartData, IProps } from "./interfaces";
 import {
@@ -43,7 +43,7 @@ function ModalChartManual({
           <option disabled>DATE</option>
           {chartData.map((el) => (
             <option value={el.time_period_start} key={el.time_period_start}>
-              {formatDateReadable(el.time_period_start)}
+              {formatDate(el.time_period_start, "dd.MM.yyyy")}
             </option>
           ))}
         </Select>

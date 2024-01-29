@@ -1,4 +1,4 @@
-import { formatDateForRequest } from "@utils/formatDate";
+import { formatDate } from "@utils/formatDate";
 
 export function checkMaxDate(date: string): string {
   const today = new Date();
@@ -10,5 +10,5 @@ export function checkMaxDate(date: string): string {
   if (dateYear < todayYear) return date;
   if (dateMonth < todayMonth) return date;
   if (dateDay <= todayDay) return date;
-  return formatDateForRequest(today.getTime());
+  return formatDate(today.getTime(), "yyyy-MM-dd");
 }

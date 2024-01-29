@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CURRENCIES_DATA } from "@constants/localStorage";
 
-import { formatDateReadable } from "./formatDate";
+import { formatDate } from "./formatDate";
 
 type currencyResponse = {
   meta: { last_updated_at: string };
@@ -24,8 +24,8 @@ export default async function getCurrencyData() {
   if (cachedData) {
     const currencyData: currencyResponse = JSON.parse(cachedData);
     if (
-      formatDateReadable(currencyData.meta.last_updated_at) ===
-      formatDateReadable(Date.now())
+      formatDate(currencyData.meta.last_updated_at, "dd.MM.yyyy") ===
+      formatDate(Date.now(), "dd.MM.yyyy")
     )
       return JSON.parse(cachedData);
   }

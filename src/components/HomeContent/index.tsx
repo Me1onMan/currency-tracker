@@ -2,7 +2,7 @@ import React, { JSX } from "react";
 import Card from "@components/Card/index";
 import UpdateIndicator from "@components/UpdateIndicator/index";
 import { targetCurrencies } from "@constants/currency";
-import { formatDateReadable } from "@utils/formatDate";
+import { formatDate } from "@utils/formatDate";
 import useNamedCurrencyData from "@utils/useNamedCurrencyData";
 
 import { CardsContainer, Main, Quotes, SectionHeader } from "./styled";
@@ -14,8 +14,9 @@ function HomeContent(): JSX.Element {
     <Main id="cy-home">
       {responseData && (
         <UpdateIndicator
-          lastUpdatedAt={formatDateReadable(
+          lastUpdatedAt={formatDate(
             new Date(responseData.meta.last_updated_at).getTime(),
+            "dd.MM.yyyy",
           )}
         />
       )}
