@@ -2,17 +2,17 @@ import styled from "styled-components";
 
 export const ModalWrapper = styled.div`
   position: fixed;
-  left: 0;
-  top: 0;
+  left: ${({ theme }) => theme.sizes.zero};
+  top: ${({ theme }) => theme.sizes.zero};
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 100vw;
-  height: 100vh;
+  width: ${({ theme }) => theme.sizes.percents.vw100};
+  height: ${({ theme }) => theme.sizes.percents.vh100};
 
-  background: rgba(0, 0, 0, 0.5);
+  background: ${({ theme }) => theme.colors.bgModalWrapper};
 `;
 
 export const ModalContainer = styled.div`
@@ -22,69 +22,64 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
+  gap: ${({ theme }) => theme.sizes.rem.rem0_5};
 
-  width: 80vw;
-  height: 90vh;
-  padding: 5%;
+  width: ${({ theme }) => theme.sizes.percents.vw80};
+  height: ${({ theme }) => theme.sizes.percents.vh90};
+  padding: ${({ theme }) => theme.sizes.percents.p5};
 
-  background-color: ${(props) => props.theme.bgColorSecondary};
-  border-radius: 16px;
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem1};
 `;
 
 export const Select = styled.select`
-  cursor: pointer;
-  outline: none;
-
   padding: 0.25rem 0.5rem;
 
-  background-color: ${(props) => props.theme.bgColorInput};
-  border: 2px solid ${(props) => props.theme.borderColorInput};
-  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
 
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;
 
 export const InputGridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 0.5rem;
+  grid-gap: ${({ theme }) => theme.sizes.rem.rem0_5};
 
-  width: 100%;
+  width: ${({ theme }) => theme.sizes.percents.p100};
 
   & label {
-    color: ${(props) => props.theme.textColorPrimary};
+    color: ${({ theme }) => theme.colors.textColorPrimary};
     display: flex;
     flex-direction: column;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0.75rem;
+    grid-gap: ${({ theme }) => theme.sizes.rem.rem0_75};
 
     & label {
-      font-size: 1.25rem;
+      font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
     }
   }
 `;
 
 export const Input = styled.input`
-  outline: none;
-
   padding: 0.25rem 0.5rem;
 
-  background-color: ${(props) => props.theme.bgColorInput};
-  border: 2px solid ${(props) => props.theme.borderColorInput};
-  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
 
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 
-  @media (min-width: 1024px) {
-    font-size: 1.25rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;
 
@@ -92,22 +87,20 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  width: 100%;
+  width: ${({ theme }) => theme.sizes.percents.p100};
 `;
 
 export const Button = styled.button`
-  cursor: pointer;
-
-  width: 40%;
+  width: ${({ theme }) => theme.sizes.percents.p40};
   padding: 0.25rem 0.5rem;
 
-  background-color: ${(props) => props.theme.bgColorInput};
-  border: 2px solid ${(props) => props.theme.borderColorInput};
-  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
 
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;

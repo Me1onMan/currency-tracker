@@ -1,51 +1,53 @@
 import styled from "styled-components";
 
 export const UpdateInfo = styled.div`
-  margin-top: 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: ${({ theme }) => theme.sizes.rem.rem1};
 
-  font-size: 1.25rem;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem3};
+
+  font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   font-weight: 200;
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 
-  @media (min-width: 420px) {
-    font-size: 1.5rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_5};
   }
 
-  @media (min-width: 768px) {
-    font-size: 2rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem2};
   }
 `;
 
 export const Indicator = styled.div`
-  width: 24px;
-  height: 24px;
-  background-color: rgba(0, 188, 79, 1);
-  border-radius: 50%;
+  width: ${({ theme }) => theme.sizes.rem.rem1_5};
+  height: ${({ theme }) => theme.sizes.rem.rem1_5};
+
+  border-radius: ${({ theme }) => theme.sizes.percents.p50};
+
   animation: flicker 3s infinite;
 
   @keyframes flicker {
     0% {
-      background-color: rgba(0, 188, 79, 1);
+      background-color: ${({ theme }) => theme.colors.flickerOn};
     }
     50% {
-      background-color: rgba(0, 188, 79, 0.2);
+      background-color: ${({ theme }) => theme.colors.flickerOff};
     }
     100% {
-      background-color: rgba(0, 188, 79, 1);
+      background-color: ${({ theme }) => theme.colors.flickerOn};
     }
   }
 
-  @media (min-width: 420px) {
-    width: 32px;
-    height: 32px;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
+    width: ${({ theme }) => theme.sizes.rem.rem2};
+    height: ${({ theme }) => theme.sizes.rem.rem2};
   }
 
-  @media (min-width: 768px) {
-    width: 40px;
-    height: 40px;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    width: ${({ theme }) => theme.sizes.rem.rem2_5};
+    height: ${({ theme }) => theme.sizes.rem.rem2_5};
   }
 `;

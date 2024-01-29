@@ -1,19 +1,16 @@
 import styled from "styled-components";
 
 export const Select = styled.select`
-  cursor: pointer;
-  outline: none;
-
-  width: 100%;
+  width: ${({ theme }) => theme.sizes.percents.p100};
   padding: 0.25rem 0.5rem;
 
-  background-color: ${(props) => props.theme.bgColorSecondary};
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
   border: none;
 
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;
 

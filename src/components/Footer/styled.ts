@@ -8,9 +8,9 @@ export const FooterMain = styled.div`
   align-items: center;
 
   padding: 0 0.5rem;
-  margin-top: 3rem;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem3};
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
@@ -21,9 +21,9 @@ export const FooterMain = styled.div`
 export const FooterContent = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: ${({ theme }) => theme.sizes.rem.rem2};
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
     flex-direction: column;
   }
 `;
@@ -31,7 +31,7 @@ export const FooterContent = styled.div`
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: ${({ theme }) => theme.sizes.rem.rem1};
   & p {
     background: linear-gradient(to right, #00d04c, #9fdc46);
     -webkit-background-clip: text;
@@ -40,81 +40,81 @@ export const LogoContainer = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 24px;
+  width: ${({ theme }) => theme.sizes.rem.rem1_5};
 
-  @media (min-width: 768px) {
-    width: 32px;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    width: ${({ theme }) => theme.sizes.rem.rem2};
   }
 
-  @media (min-width: 1024px) {
-    width: 40px;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    width: ${({ theme }) => theme.sizes.rem.rem2_5};
   }
 `;
 
 export const LogoName = styled.p`
-  font-size: 1.25rem;
+  font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   font-weight: 600;
 
-  @media (min-width: 1024px) {
-    font-size: 1.5rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_5};
   }
 `;
 
 export const FooterDescription = styled.p`
   display: none;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
     display: block;
-    max-width: 18rem;
+    max-width: ${({ theme }) => theme.sizes.rem.rem18};
 
     font-weight: 200;
-    color: ${(props) => props.theme.textColorPrimary};
+    color: ${({ theme }) => theme.colors.textColorPrimary};
   }
 
-  @media (min-width: 1024px) {
-    max-width: 30rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    max-width: ${({ theme }) => theme.sizes.rem.rem30};
   }
 `;
 
 export const LinksContainer = styled.div`
   display: grid;
-  margin-top: 2rem;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem2};
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 0.75rem;
+  column-gap: ${({ theme }) => theme.sizes.rem.rem0_75};
 
   & > div {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: ${({ theme }) => theme.sizes.rem.rem0_5};
   }
 
   & p {
-    color: ${(props) => props.theme.textColorPrimary};
+    color: ${({ theme }) => theme.colors.textColorPrimary};
   }
 
   & a {
-    color: ${(props) => props.theme.textColorSecondary};
+    color: ${({ theme }) => theme.colors.textColorSecondary};
   }
 
-  @media (min-width: 768px) {
-    margin-top: 0;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    margin-top: ${({ theme }) => theme.sizes.zero};
   }
 
-  @media (min-width: 1024px) {
-    font-size: 1.25rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;
 
 export const Copyright = styled.p`
-  margin-top: 2rem;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem2};
   padding: 0.5rem 0;
 
   font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
-  color: ${(props) => props.theme.textColorSecondary};
+  font-size: ${({ theme }) => theme.sizes.rem.rem0_75};
+  color: ${({ theme }) => theme.colors.textColorSecondary};
   text-align: center;
 
-  @media (min-width: 768px) {
-    font-size: 1rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1};
   }
 `;

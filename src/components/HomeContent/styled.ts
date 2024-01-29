@@ -7,28 +7,31 @@ export const Main = styled.main`
 `;
 
 export const Quotes = styled.section`
-  margin-top: 3rem;
-  width: 100%;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem3};
+  width: ${({ theme }) => theme.sizes.percents.p100};
   padding: 0 5%;
 `;
 
 export const SectionHeader = styled.h3`
   border-bottom: 1px solid #474747;
+
   font-weight: 200;
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 `;
 
 export const CardsContainer = styled.div`
-  margin-top: 1rem;
   display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 1rem;
   justify-items: center;
+  grid-template-columns: 1fr;
+  row-gap: ${({ theme }) => theme.sizes.rem.rem1};
 
-  @media (min-width: 768px) {
-    margin-top: 2rem;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem1};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 3rem;
-    row-gap: 2rem;
+    column-gap: ${({ theme }) => theme.sizes.rem.rem3};
+    row-gap: ${({ theme }) => theme.sizes.rem.rem2};
+
+    margin-top: ${({ theme }) => theme.sizes.rem.rem2};
   }
 `;

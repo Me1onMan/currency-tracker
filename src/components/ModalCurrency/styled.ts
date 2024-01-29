@@ -3,126 +3,124 @@ import styled from "styled-components";
 export const ModalWrapper = styled.div`
   position: fixed;
   z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+  left: ${({ theme }) => theme.sizes.zero};
+  top: ${({ theme }) => theme.sizes.zero};
+  width: ${({ theme }) => theme.sizes.percents.vw100};
+  height: ${({ theme }) => theme.sizes.percents.vh100};
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: ${({ theme }) => theme.colors.bgModalWrapper};
 `;
 
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80vw;
-  height: 90vh;
-  padding: 5%;
-  gap: 0.75rem;
+  width: ${({ theme }) => theme.sizes.percents.vw80};
+  height: ${({ theme }) => theme.sizes.percents.vh90};
+  gap: ${({ theme }) => theme.sizes.rem.rem0_75};
 
-  background-color: ${(props) => props.theme.bgColorSecondary};
-  border-radius: 16px;
+  padding: ${({ theme }) => theme.sizes.percents.p5};
+
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem1};
 
   overflow: auto;
 
   & > * {
-    width: 100%;
+    width: ${({ theme }) => theme.sizes.percents.p100};
   }
 
-  @media (min-width: 420px) {
-    gap: 1.25rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
+    gap: ${({ theme }) => theme.sizes.rem.rem1_25};
 
     & * {
-      font-size: 1.25rem;
+      font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
     }
   }
 
-  @media (min-width: 768px) {
-    gap: 1.5rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    gap: ${({ theme }) => theme.sizes.rem.rem1_5};
 
     & * {
-      font-size: 1.5rem;
+      font-size: ${({ theme }) => theme.sizes.rem.rem1_5};
     }
   }
 `;
 
 export const Header = styled.h3`
-  margin-bottom: 1rem;
+  margin-bottom: ${({ theme }) => theme.sizes.rem.rem1};
 
   font-weight: 400;
-  color: ${(props) => props.theme.textColorCardPrimary};
+  color: ${({ theme }) => theme.colors.textColorCardPrimary};
 
-  @media (min-width: 1024px) {
-    font-size: 1.75rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_75};
   }
 `;
 
 export const Input = styled.input`
-  background-color: ${(props) => props.theme.bgColorInput};
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
   padding: 0.25rem 0.5rem;
-  border: 2px solid #909090;
-  border-radius: 8px;
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
   outline: none;
-  color: ${(props) => props.theme.textColorCardSecondary};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
 `;
 
 export const DropdownDiv = styled.div`
   position: relative;
   & * {
-    width: 100%;
+    width: ${({ theme }) => theme.sizes.percents.p100};
   }
 `;
 
 export const DropdownBtn = styled.button`
-  cursor: pointer;
-  background-color: ${(props) => props.theme.bgColorInput};
-  border: 2px solid #909090;
-  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
   padding: 0.25rem 0.5rem;
   text-align: left;
-  color: ${(props) => props.theme.textColorCardSecondary};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
 `;
 
 export const List = styled.ul`
   position: absolute;
   list-style-type: none;
-  background-color: ${(props) => props.theme.bgColorInput};
-  border-radius: 8px;
-  max-height: 15rem;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
+  max-height: ${({ theme }) => theme.sizes.rem.rem15};
   overflow-y: scroll;
 `;
 
 export const Item = styled.li`
-  border-radius: 8px;
-  color: ${(props) => props.theme.textColorCardSecondary};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
   &:hover {
-    background-color: #393939;
+    background-color: ${({ theme }) => theme.colors.dropdownItemHover};
   }
 `;
 
 export const ItemBtn = styled.button`
-  width: 100%;
-  height: 100%;
+  width: ${({ theme }) => theme.sizes.percents.p100};
+  height: ${({ theme }) => theme.sizes.percents.p100};
   text-align: left;
-  color: ${(props) => props.theme.textColorCardSecondary};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
 
   background: none;
   border: none;
   padding: 0.25rem 0.5rem;
-  cursor: pointer;
 `;
 
 export const CloseBtn = styled.button`
-  cursor: pointer;
   margin-top: auto;
-  padding: 0.5rem;
-  max-width: 40%;
+  padding: ${({ theme }) => theme.sizes.rem.rem0_5};
+  max-width: ${({ theme }) => theme.sizes.percents.p40};
 
-  background-color: ${(props) => props.theme.bgColorInput};
-  border: 2px solid #909090;
-  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
 
-  color: ${(props) => props.theme.textColorCardSecondary};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
 `;

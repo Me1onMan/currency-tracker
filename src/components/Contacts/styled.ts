@@ -4,12 +4,14 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: ${(props) => props.theme.bgColorPrimary};
+
+  height: ${({ theme }) => theme.sizes.percents.vh100};
+
+  background-color: ${({ theme }) => theme.colors.bgColorPrimary};
 `;
 
 export const Text = styled.p`
-  color: ${(props) => props.theme.textColorPrimary};
   text-align: center;
-  font-size: 1.5rem;
+  font-size: ${({ theme }) => theme.sizes.rem.rem1_5};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 `;

@@ -4,48 +4,45 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem1};
 `;
 
 export const OptionsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 0.5rem;
-  width: 100%;
+  grid-gap: ${({ theme }) => theme.sizes.rem.rem0_5};
+  width: ${({ theme }) => theme.sizes.percents.p100};
   padding: 0 5%;
 
   & > * {
-    font-size: 1.25rem;
-    color: ${(props) => props.theme.textColorPrimary};
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
+    color: ${({ theme }) => theme.colors.textColorPrimary};
   }
 
   & > button {
-    cursor: pointer;
     padding: 0.25rem 0.75rem;
 
-    background-color: ${(props) => props.theme.bgColorSecondary};
+    background-color: ${({ theme }) => theme.colors.bgColorSecondary};
     border: none;
   }
 
-  @media (min-width: 420px) {
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 0.75rem;
-    row-gap: 1rem;
+    column-gap: ${({ theme }) => theme.sizes.rem.rem0_75};
+    row-gap: ${({ theme }) => theme.sizes.rem.rem1};
 
-    font-size: 1.25rem;
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;
 
 export const Select = styled.select`
-  outline: none;
-
-  width: 100%;
+  width: ${({ theme }) => theme.sizes.percents.p100};
   padding: 0.25rem 0.5rem;
 
-  background-color: ${(props) => props.theme.bgColorSecondary};
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
   border: none;
 
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 `;
 
 export const Option = styled.option``;
@@ -53,23 +50,23 @@ export const Option = styled.option``;
 export const DateInput = styled.input`
   cursor: pointer;
 
-  width: 100%;
+  width: ${({ theme }) => theme.sizes.percents.p100};
   padding: 0.25rem 0.5rem;
 
-  background-color: ${(props) => props.theme.bgColorSecondary};
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
   border: none;
 
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
 
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;
 
 export const OptionBtn = styled.button`
-  width: 100%;
+  width: ${({ theme }) => theme.sizes.percents.p100};
 
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;
