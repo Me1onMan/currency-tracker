@@ -1,25 +1,15 @@
 import React, { Component, createRef } from "react";
+import { getCurrenciesCodes } from "@utils/getCurrencyCodes";
 
-import { Input, ResultItem, SearchContainer, SearchResults } from "./styled";
-
-interface IProps {
-  searchWord: string;
-  handleChange: (newWord: string) => void;
-}
-
-interface ICurrency {
-  meta: { last_updated_at: string };
-  data: {
-    [currencyCode: string]: {
-      code: string;
-      value: number;
-    };
-  };
-}
-
-interface IState {
-  сurrencyCodes: string[];
-}
+import { IProps, IState } from "./interfaces";
+import {
+  ClearButton,
+  Input,
+  InputContainer,
+  ResultItem,
+  SearchContainer,
+  SearchResults,
+} from "./styled";
 
 class CurrencySearchBar extends Component<IProps, IState> {
   searchRef: React.RefObject<HTMLInputElement | null>;
@@ -28,40 +18,45 @@ class CurrencySearchBar extends Component<IProps, IState> {
     super(props);
     this.searchRef = createRef();
     this.state = {
-      сurrencyCodes: this.getCurrenciesCodes(),
+      сurrencyCodes: getCurrenciesCodes(),
     };
     this.handleClick = this.handleClick.bind(this);
   }
-
-  getCurrenciesCodes = () => {
-    const currenciesResponse: ICurrency = JSON.parse(
-      localStorage.getItem("currencyData"),
-    );
-    const currenciesCodes = [];
-    for (const currency in currenciesResponse.data) {
-      currenciesCodes.push(currenciesResponse.data[currency].code);
-    }
-    return currenciesCodes;
-  };
 
   handleClick = (code: string) => {
     const { handleChange } = this.props;
     handleChange(code);
   };
 
+  clearSearch = () => {
+    const { handleChange } = this.props;
+    handleChange("");
+  };
+
+  changeSearch = () => {
+    const { handleChange } = this.props;
+    handleChange(this.searchRef.current.value);
+  };
+
   render() {
-    const { handleChange, searchWord } = this.props;
+    const { searchWord } = this.props;
+    const { сurrencyCodes } = this.state;
     return (
       <SearchContainer>
-        <Input
-          placeholder="Search currency"
-          value={searchWord}
-          onChange={() => handleChange(this.searchRef.current.value)}
-          ref={this.searchRef}
-        />
-        {this.state.сurrencyCodes && (
+        <InputContainer>
+          <Input
+            placeholder="Search currency"
+            value={searchWord}
+            onChange={this.changeSearch}
+            ref={this.searchRef}
+          />
+          <ClearButton onClick={this.clearSearch} type="button">
+            CLEAR
+          </ClearButton>
+        </InputContainer>
+        {сurrencyCodes && (
           <SearchResults>
-            {this.state.сurrencyCodes
+            {сurrencyCodes
               .filter((code) => !code.search(new RegExp(searchWord, "gi")))
               .map((code) => (
                 <ResultItem onClick={() => this.handleClick(code)} key={code}>

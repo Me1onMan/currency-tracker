@@ -1,33 +1,25 @@
-import React, { Component, ReactNode } from "react";
+import React, { Component } from "react";
 import errorImage from "@assets/Not-found.png";
 
+import { IProps, IState } from "./interfaces";
 import { Image, MessageContainer, Wrapper } from "./styled";
 
-interface ErrorBoundaryProps {
-  children: ReactNode;
-}
-
-interface ErrorBoundaryState {
-  hasError: boolean;
-}
-
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       hasError: false,
     };
   }
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    console.log(error);
-
+  static getDerivedStateFromError(): IState {
     return {
       hasError: true,
     };
   }
 
   render() {
+    const { children } = this.props;
     const { hasError } = this.state;
 
     if (hasError) {
@@ -36,13 +28,17 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
           <MessageContainer>
             <h1>Oops! It seems you have a mistake</h1>
             <h2>An error occurred</h2>
-            <Image src={errorImage} alt="error occured" />
+            <Image
+              src={errorImage}
+              alt="Error occured"
+              title="Trying to solve problem"
+            />
           </MessageContainer>
         </Wrapper>
       );
     }
 
-    return this.props.children;
+    return children;
   }
 }
 

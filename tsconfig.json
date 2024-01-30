@@ -12,7 +12,13 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["./src/*"]
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@pages/*": ["src/pages/*"],
+      "@utils/*": ["src/utils/*"],
+      "@router/*": ["src/router/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "index.d.ts", "cypress/**/*"],

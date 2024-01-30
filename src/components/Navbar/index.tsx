@@ -1,55 +1,38 @@
+import React, { JSX, useState } from "react";
+import { createPortal } from "react-dom";
 import logo from "@assets/diagram-svgrepo-com-1.png";
-// @ts-expect-error @ as src
-import { useTheme } from "@contexts/ThemeProvider";
-import React from "react";
-import { Link } from "react-router-dom";
 
-import { Input, Label, Logo, Nav, NavbarContainer, NavList } from "./styled";
+import BurgerMenu from "./BurgerMenu";
+import NavLinks from "./NavLinks";
+import { BurgerButton, Logo, NavbarContainer } from "./styled";
+import ThemeSwitcher from "./ThemeSwitcher";
 
-function NavLinks(): JSX.Element {
-  return (
-    <Nav>
-      <NavList>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/timeline">Timeline</Link>
-        </li>
-        <li>
-          <Link to="/banks">Bank card</Link>
-        </li>
-        <li>
-          <Link to="/contacts">Contacts</Link>
-        </li>
-      </NavList>
-    </Nav>
-  );
-}
+const modalContainer = document.getElementById("modal");
 
-function ThemeSwitcher(): JSX.Element {
-  const { theme, toggleTheme } = useTheme();
+function Navbar(): JSX.Element {
+  const [isOpen, setIsOpen] = useState(false);
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+  const openMenu = () => {
+    setIsOpen(true);
+  };
 
   return (
     <>
-      <Input
-        type="checkbox"
-        id="theme-switcher"
-        checked={theme === "light"}
-        onChange={toggleTheme}
-      />
-      <Label id="cy-theme-toggler" htmlFor="theme-switcher" />
+      <NavbarContainer>
+        <Logo src={logo} alt="Logo" title="Modsen currency tracker" />
+        <NavLinks />
+        <ThemeSwitcher />
+        <BurgerButton onClick={openMenu}>
+          <span />
+          <span />
+          <span />
+        </BurgerButton>
+      </NavbarContainer>
+      {isOpen &&
+        createPortal(<BurgerMenu handleClose={closeMenu} />, modalContainer)}
     </>
-  );
-}
-
-function Navbar(): JSX.Element {
-  return (
-    <NavbarContainer>
-      <Logo src={logo} alt="logo" />
-      <NavLinks />
-      <ThemeSwitcher />
-    </NavbarContainer>
   );
 }
 

@@ -3,6 +3,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 
+const webpack = require("webpack");
+const config = require("dotenv").config();
+
 module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
@@ -18,6 +21,7 @@ module.exports = {
     new HtmlWebpackPlugin({ template: "./public/index.html" }),
     new CleanWebpackPlugin(),
     new ESLintWebpackPlugin({ extensions: ["jsx", "js", "tsx"] }),
+    new webpack.EnvironmentPlugin(config.parsed),
   ],
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -28,11 +32,11 @@ module.exports = {
       "@contexts": path.resolve(__dirname, "src/contexts/"),
       "@pages": path.resolve(__dirname, "src/pages/"),
       "@utils": path.resolve(__dirname, "src/utils/"),
+      "@router": path.resolve(__dirname, "src/router/"),
     },
   },
   module: {
     rules: [
-      //удалить
       {
         test: /\.(css)$/,
         use: ["style-loader", "css-loader"],

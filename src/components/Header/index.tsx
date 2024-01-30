@@ -1,5 +1,5 @@
+import React, { JSX } from "react";
 import logo from "@assets/diagram-svgrepo-com-1.png";
-import React from "react";
 
 import {
   DescriptionContainer,
@@ -21,7 +21,7 @@ function Header(): JSX.Element {
           Quotes for the dollar and other international currencies.
         </DescriptionText>
       </DescriptionContainer>
-      <Logo src={logo} />
+      <Logo src={logo} alt="Logo" title="Modsen currency tracker" />
     </HeaderContainer>
   );
 }

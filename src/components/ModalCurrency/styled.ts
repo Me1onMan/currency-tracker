@@ -3,101 +3,124 @@ import styled from "styled-components";
 export const ModalWrapper = styled.div`
   position: fixed;
   z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+  left: ${({ theme }) => theme.sizes.zero};
+  top: ${({ theme }) => theme.sizes.zero};
+  width: ${({ theme }) => theme.sizes.percents.vw100};
+  height: ${({ theme }) => theme.sizes.percents.vh100};
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: ${({ theme }) => theme.colors.bgModalWrapper};
 `;
 
 export const ModalContainer = styled.div`
-  width: 70vw;
-  height: 80vh;
   display: flex;
-  gap: 20px;
   flex-direction: column;
   align-items: center;
-  background-color: ${(props) => props.theme.bgColorSecondary};
-  border-radius: 16px;
-  padding: 5%;
+  width: ${({ theme }) => theme.sizes.percents.vw80};
+  height: ${({ theme }) => theme.sizes.percents.vh90};
+  gap: ${({ theme }) => theme.sizes.rem.rem0_75};
+
+  padding: ${({ theme }) => theme.sizes.percents.p5};
+
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem1};
+
   overflow: auto;
 
-  & * {
-    width: 80%;
+  & > * {
+    width: ${({ theme }) => theme.sizes.percents.p100};
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
+    gap: ${({ theme }) => theme.sizes.rem.rem1_25};
+
+    & * {
+      font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    gap: ${({ theme }) => theme.sizes.rem.rem1_5};
+
+    & * {
+      font-size: ${({ theme }) => theme.sizes.rem.rem1_5};
+    }
   }
 `;
 
 export const Header = styled.h3`
+  margin-bottom: ${({ theme }) => theme.sizes.rem.rem1};
+
   font-weight: 400;
-  font-size: 1.5rem;
-  color: ${(props) => props.theme.textColorCardPrimary};
+  color: ${({ theme }) => theme.colors.textColorCardPrimary};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_75};
+  }
 `;
 
 export const Input = styled.input`
-  background-color: ${(props) => props.theme.bgColorInput};
-  padding: 0.5rem 0.75rem;
-  border: 2px solid #909090;
-  border-radius: 16px;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  padding: 0.25rem 0.5rem;
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
   outline: none;
-  color: ${(props) => props.theme.textColorCardSecondary};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
 `;
 
 export const DropdownDiv = styled.div`
   position: relative;
   & * {
-    width: 100%;
+    width: ${({ theme }) => theme.sizes.percents.p100};
   }
 `;
 
 export const DropdownBtn = styled.button`
-  cursor: pointer;
-  background-color: ${(props) => props.theme.bgColorInput};
-  border: 2px solid #909090;
-  border-radius: 16px;
-  padding: 0.5rem 0.75rem;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
+  padding: 0.25rem 0.5rem;
   text-align: left;
-  color: ${(props) => props.theme.textColorCardSecondary};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
 `;
 
 export const List = styled.ul`
   position: absolute;
   list-style-type: none;
-  background-color: ${(props) => props.theme.bgColorInput};
-  border-radius: 16px;
-  max-height: 15rem;
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
+  max-height: ${({ theme }) => theme.sizes.rem.rem15};
   overflow-y: scroll;
 `;
 
 export const Item = styled.li`
-  border-radius: 16px;
-  ${(props) => props.theme.textColorCardSecondary}
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
   &:hover {
-    background-color: #393939;
+    background-color: ${({ theme }) => theme.colors.dropdownItemHover};
   }
 `;
 
 export const ItemBtn = styled.button`
-  width: 100%;
-  height: 100%;
+  width: ${({ theme }) => theme.sizes.percents.p100};
+  height: ${({ theme }) => theme.sizes.percents.p100};
   text-align: left;
-  color: ${(props) => props.theme.textColorCardSecondary};
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
 
   background: none;
   border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
+  padding: 0.25rem 0.5rem;
 `;
 
 export const CloseBtn = styled.button`
-  cursor: pointer;
   margin-top: auto;
-  background-color: ${(props) => props.theme.bgColorInput};
-  border: none;
-  border-radius: 16px;
-  padding: 0.5rem;
-  max-width: 40%;
-  color: ${(props) => props.theme.textColorCardSecondary};
+  padding: ${({ theme }) => theme.sizes.rem.rem0_5};
+  max-width: ${({ theme }) => theme.sizes.percents.p40};
+
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_5};
+
+  color: ${({ theme }) => theme.colors.textColorCardSecondary};
 `;

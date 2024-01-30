@@ -4,38 +4,93 @@ export const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: ${({ theme }) => theme.sizes.rem.rem1};
+
   padding: 2rem 0;
-  gap: 1rem;
 `;
 
 export const Input = styled.input`
-  padding: 0 0.5rem;
+  padding: 0.25rem 0.5rem;
+
+  background-color: ${({ theme }) => theme.colors.bgColorInput};
+  border: 2px solid ${({ theme }) => theme.colors.borderColorInput};
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_25};
+
+  color: ${({ theme }) => theme.colors.textColorPrimary};
   text-align: center;
-  outline: none;
-  background-color: ${(props) => props.theme.bgColorInput};
-  border: 2px solid ${(props) => props.theme.borderColorInput};
-  color: ${(props) => props.theme.textColorPrimary};
-  border-radius: 4px;
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
+  }
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.sizes.rem.rem2};
+  align-items: center;
+`;
+
+export const ClearButton = styled.button`
+  padding: 0.25rem 0.5rem;
+
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
+  border: none;
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_25};
+
+  text-align: center;
+  color: ${({ theme }) => theme.colors.textColorPrimary};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
+  }
 `;
 
 export const SearchResults = styled.div`
-  max-height: 8rem;
-  width: 20rem;
+  overflow-y: auto;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 0.5rem;
-  gap: 0.5rem;
-  overflow-y: auto;
+  gap: ${({ theme }) => theme.sizes.rem.rem0_5};
+
+  max-height: ${({ theme }) => theme.sizes.rem.rem8};
+  padding: ${({ theme }) => theme.sizes.rem.rem0_5};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: ${({ theme }) => theme.sizes.rem.rem0_75};
+    row-gap: ${({ theme }) => theme.sizes.rem.rem0_5};
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    max-height: ${({ theme }) => theme.sizes.rem.rem10};
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    max-height: ${({ theme }) => theme.sizes.rem.rem12};
+  }
 `;
 
 export const ResultItem = styled.button`
-  cursor: pointer;
-  background-color: ${(props) => props.theme.bgColorSecondary};
-  color: ${(props) => props.theme.textColorPrimary};
-  border: none;
   display: flex;
-  max-height: 2rem;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+
+  width: ${({ theme }) => theme.sizes.percents.p100};
+
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
+  border: none;
+  border-radius: ${({ theme }) => theme.sizes.rem.rem0_25};
+
+  color: ${({ theme }) => theme.colors.textColorPrimary};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    width: ${({ theme }) => theme.sizes.rem.rem4};
+    height: ${({ theme }) => theme.sizes.rem.rem2};
+
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    width: ${({ theme }) => theme.sizes.rem.rem6};
+  }
 `;

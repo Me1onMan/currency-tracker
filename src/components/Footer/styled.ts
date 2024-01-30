@@ -1,30 +1,37 @@
 import styled from "styled-components";
 
-export const FooterContainer = styled.footer`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+export const FooterContainer = styled.footer``;
 
 export const FooterMain = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  width: 90%;
-  margin-top: 3rem;
+  flex-direction: column;
+  align-items: center;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
+  padding: 0 0.5rem;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem3};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 2rem;
   }
 `;
 
-export const FooterContent = styled.div``;
+export const FooterContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: ${({ theme }) => theme.sizes.rem.rem2};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    flex-direction: column;
+  }
+`;
 
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: ${({ theme }) => theme.sizes.rem.rem1};
   & p {
     background: linear-gradient(to right, #00d04c, #9fdc46);
     -webkit-background-clip: text;
@@ -33,49 +40,52 @@ export const LogoContainer = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 44px;
+  width: ${({ theme }) => theme.sizes.rem.rem1_5};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    width: ${({ theme }) => theme.sizes.rem.rem2};
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    width: ${({ theme }) => theme.sizes.rem.rem2_5};
+  }
 `;
 
 export const LogoName = styled.p`
-  font-size: 1.5rem;
+  font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   font-weight: 600;
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_5};
+  }
 `;
 
 export const FooterDescription = styled.p`
-  font-weight: 200;
-  max-width: 30rem;
-  margin-top: 1rem;
-  color: ${(props) => props.theme.textColorPrimary};
+  display: none;
 
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-export const LinksContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 2rem;
-
-  & > div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  & p {
-    color: ${(props) => props.theme.textColorPrimary};
-  }
-
-  & a {
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
     display: block;
-    color: ${(props) => props.theme.textColorSecondary};
+    max-width: ${({ theme }) => theme.sizes.rem.rem18};
+
+    font-weight: 200;
+    color: ${({ theme }) => theme.colors.textColorPrimary};
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    max-width: ${({ theme }) => theme.sizes.rem.rem30};
   }
 `;
 
 export const Copyright = styled.p`
+  margin-top: ${({ theme }) => theme.sizes.rem.rem2};
+  padding: 0.5rem 0;
+
   font-family: "Inter", sans-serif;
-  color: ${(props) => props.theme.textColorSecondary};
+  font-size: ${({ theme }) => theme.sizes.rem.rem0_75};
+  color: ${({ theme }) => theme.colors.textColorSecondary};
   text-align: center;
-  margin: 40px;
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1};
+  }
 `;

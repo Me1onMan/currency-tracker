@@ -1,69 +1,69 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.div`
-  /* margin-top: 5rem; */
+export const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-  background: ${(props) => props.theme.bgColorHeader};
+  gap: ${({ theme }) => theme.sizes.rem.rem2};
+  padding: 0.75rem 2rem;
+  background: ${({ theme }) => theme.colors.bgColorHeader};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
+    padding: 1.5rem 2rem;
+  }
 `;
 
 export const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: end;
+  gap: ${({ theme }) => theme.sizes.rem.rem0_5};
 
-  @media (max-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
     align-items: center;
+    gap: ${({ theme }) => theme.sizes.rem.rem2};
   }
 `;
 
 export const HeaderH1 = styled.h1`
   display: flex;
   flex-direction: column;
-  align-items: end;
 
   font-weight: 600;
+  font-size: ${({ theme }) => theme.sizes.rem.rem2};
 
   & > span {
-    font-size: 4rem;
     background: linear-gradient(to right, #00d04c, #9fdc46);
     -webkit-background-clip: text;
     color: transparent;
+    text-align: center;
   }
 
-  @media (max-width: 990px) {
-    & > span {
-      font-size: 3rem;
-    }
-  }
-
-  @media (max-width: 990px) {
-    align-items: center;
-
-    & > span {
-      font-size: 2rem;
-    }
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem2_5};
   }
 `;
 
 export const DescriptionText = styled.p`
-  font-size: 25px;
-  max-width: 408px;
+  max-width: ${({ theme }) => theme.sizes.rem.rem25};
+
+  font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   text-align: center;
-  color: ${(props) => props.theme.textColorPrimary};
+  color: ${({ theme }) => theme.colors.textColorPrimary};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_5};
+  }
 `;
 
 export const Logo = styled.img`
-  height: 312px;
+  display: none;
 
-  @media (max-width: 990px) {
-    height: 240px;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    display: block;
+    height: ${({ theme }) => theme.sizes.rem.rem15};
   }
 
-  @media (max-width: 768px) {
-    display: none;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.laptop}) {
+    height: ${({ theme }) => theme.sizes.rem.rem20};
   }
 `;

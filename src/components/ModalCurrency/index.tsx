@@ -1,7 +1,13 @@
-// @ts-expect-error @ as src
+import React, {
+  ChangeEvent,
+  JSX,
+  MouseEvent,
+  useEffect,
+  useState,
+} from "react";
 import { targetCurrencies } from "@constants/currency";
-import React, { ChangeEvent, useEffect, useState } from "react";
 
+import { IProps } from "./interfaces";
 import {
   CloseBtn,
   DropdownBtn,
@@ -14,20 +20,6 @@ import {
   ModalContainer,
   ModalWrapper,
 } from "./styled";
-
-type allCurrenciesType = {
-  [currencyCode: string]: {
-    code: string;
-    name?: string;
-    value: number;
-  };
-};
-
-interface ModalContentProps {
-  onClose: () => void;
-  targetCurrency: string;
-  currencies: allCurrenciesType;
-}
 
 const convert = (
   fromValue: number,
@@ -42,7 +34,7 @@ function ModalCurrency({
   onClose,
   targetCurrency,
   currencies,
-}: ModalContentProps): JSX.Element {
+}: IProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState(targetCurrencies[0]);
   const [inputValue, setInputValue] = useState<number>(1);
@@ -67,6 +59,10 @@ function ModalCurrency({
     setSelectedCurrency(currencyCode);
   };
 
+  const closeModal = (e: MouseEvent<HTMLElement>) => {
+    if (e.target === e.currentTarget) onClose();
+  };
+
   useEffect(() => {
     setResultValue(
       convert(
@@ -78,7 +74,7 @@ function ModalCurrency({
   }, [inputValue, selectedCurrency]);
 
   return (
-    <ModalWrapper>
+    <ModalWrapper onClick={closeModal}>
       <ModalContainer className="cy-modal">
         <Header>{`${targetCurrency} (${currencies[targetCurrency].name})`}</Header>
         <Input
@@ -107,7 +103,7 @@ function ModalCurrency({
           )}
         </DropdownDiv>
         <Input className="cy-output" value={resultValue} readOnly />
-        <CloseBtn onClick={onClose} type="button">
+        <CloseBtn onClick={closeModal} type="button">
           CLOSE
         </CloseBtn>
       </ModalContainer>

@@ -1,9 +1,4 @@
-import React, {
-  Children,
-  createContext,
-  PureComponent,
-  ReactNode,
-} from "react";
+import { ChartObserver } from "./ChartDataProvider";
 
 interface IChartData {
   rate_close: number;
@@ -16,79 +11,35 @@ interface IChartData {
   time_period_start: string;
 }
 
-type CurrencyHistoryData = IChartData[];
-
-export interface ChartObserver {
-  update: (newData: CurrencyHistoryData) => void;
-}
-
-export interface ChartSubjectInterface {
-  addObserver: (subscriber: ChartObserver) => void;
-  removeObserver: (subscriber: ChartObserver) => void;
-  notifyObservers: () => void;
-  updateChart: (newData: CurrencyHistoryData) => void;
-  getChartData: () => CurrencyHistoryData;
-}
-
-interface ChartDataContextProps {
-  children: ReactNode;
-}
-
-export const ChartDataContext = createContext<
-  ChartSubjectInterface | undefined
->(undefined);
-
-export class ChartSubject {
+class ChartSubject {
   private chartSubscribers: ChartObserver[] = [];
 
-  private chartData: CurrencyHistoryData = [];
+  private chartData: IChartData[] = [];
 
   addObserver(subscriber: ChartObserver) {
-    console.log("addObserver", subscriber);
-
     this.chartSubscribers.push(subscriber);
   }
 
   removeObserver(subscriber: ChartObserver) {
-    console.log("removeObserver");
-
     this.chartSubscribers = this.chartSubscribers.filter(
       (subjects) => subjects !== subscriber,
     );
   }
 
   notifyObservers() {
-    console.log("notifyObservers");
     this.chartSubscribers.forEach((subscriber) =>
       subscriber.update(this.chartData),
     );
   }
 
-  updateChart(newChartData: CurrencyHistoryData) {
-    console.log("updateChart");
-    console.log(newChartData);
-
+  updateChart(newChartData: IChartData[]) {
     this.chartData = newChartData;
     this.notifyObservers();
   }
 
   getChartData() {
-    console.log("getChartData");
     return this.chartData;
   }
 }
 
-class ChartDataProvider extends PureComponent<ChartDataContextProps> {
-  chartSubject = new ChartSubject();
-
-  render() {
-    const { children } = this.props;
-    return (
-      <ChartDataContext.Provider value={this.chartSubject}>
-        {children}
-      </ChartDataContext.Provider>
-    );
-  }
-}
-
-export default ChartDataProvider;
+export default ChartSubject;

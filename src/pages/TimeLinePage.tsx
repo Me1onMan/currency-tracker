@@ -1,17 +1,10 @@
 import React from "react";
-
-// @ts-expect-error @ as src
-import Footer from "@components/Footer";
-// @ts-expect-error @ as src
-import Header from "@components/Header";
-// @ts-expect-error @ as src
-import Navbar from "@components/Navbar";
-// @ts-expect-error @ as src
-import TimeLineContent from "@components/TimeLineContent";
-// @ts-expect-error @ as src
-import ChartDataProvider from "@contexts/ChartObserver";
-// @ts-expect-error @ as src
 import ErrorBoundary from "@components/ErrorBoundary";
+import Footer from "@components/Footer";
+import Header from "@components/Header";
+import Navbar from "@components/Navbar";
+import TimeLineContent from "@components/TimeLineContent";
+import { ChartDataProvider } from "@contexts/ChartDataProvider";
 
 function TimeLinePage(): JSX.Element {
   return (

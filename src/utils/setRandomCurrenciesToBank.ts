@@ -1,5 +1,5 @@
-// @ts-expect-error @ as src
 import { banks, IBank } from "@constants/banks";
+import { CURRENCIES_DATA } from "@constants/localStorage";
 
 interface ICurrency {
   meta: { last_updated_at: string };
@@ -13,7 +13,7 @@ interface ICurrency {
 
 const getCurrenciesCodes = () => {
   const currenciesResponse: ICurrency = JSON.parse(
-    localStorage.getItem("currencyData"),
+    localStorage.getItem(CURRENCIES_DATA),
   );
   const currenciesCodes = [];
   for (const currency in currenciesResponse.data) {
@@ -22,7 +22,7 @@ const getCurrenciesCodes = () => {
   return currenciesCodes;
 };
 
-export const setRandomCurrenciesToBank = (currenciesCount: number): IBank[] => {
+const setRandomCurrenciesToBank = (currenciesCount: number): IBank[] => {
   const currenciesResponse = getCurrenciesCodes();
 
   return banks.map((bank: IBank) => {
@@ -38,3 +38,5 @@ export const setRandomCurrenciesToBank = (currenciesCount: number): IBank[] => {
     return bank;
   });
 };
+
+export default setRandomCurrenciesToBank;

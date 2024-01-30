@@ -1,38 +1,16 @@
-import "mapbox-gl/dist/mapbox-gl.css";
-
-// @ts-expect-error @ as src
+import React, { Component, createRef } from "react";
 import CurrencySearchBar from "@components/CurrencySearchBar";
-// @ts-expect-error @ as src
 import { banks, IBank } from "@constants/banks";
-// @ts-expect-error @ as src
-import { setRandomCurrenciesToBank } from "@utils/setRandomCurrenciesToBank";
+import { CURRENCIES_DATA } from "@constants/localStorage";
+import setRandomCurrenciesToBank from "@utils/setRandomCurrenciesToBank";
 import axios from "axios";
 import mapboxgl from "mapbox-gl";
-import React, { Component, createRef } from "react";
 
+import "mapbox-gl/dist/mapbox-gl.css";
+
+import { MAP_CONFIG } from "./config";
+import { ICurrency, IMapMarker, IProps, IState } from "./interfaces";
 import { MapContainer, MapContentContainer } from "./styled";
-
-const ACCESS_TOKEN =
-  "pk.eyJ1IjoieHllcm1pa3giLCJhIjoiY2xyYXBrZ3lmMGhlbjJxcGp0eTFjYmc5NSJ9.MeXZnYQp9VmvxUdozvOtlA";
-
-interface ICurrency {
-  meta: { last_updated_at: string };
-  data: {
-    [currencyCode: string]: {
-      code: string;
-      name?: string;
-      value: number;
-    };
-  };
-}
-
-interface IProps {}
-
-interface IState {
-  filledBanks: IBank[];
-  mapMarkers: any[];
-  searchWord: string;
-}
 
 export default class BankMapContent extends Component<IProps, IState> {
   mapContainerRef: React.RefObject<HTMLDivElement | null>;
@@ -49,21 +27,20 @@ export default class BankMapContent extends Component<IProps, IState> {
   }
 
   componentDidMount(): void {
-    mapboxgl.accessToken = ACCESS_TOKEN;
+    mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
     const map = new mapboxgl.Map({
+      ...MAP_CONFIG,
       container: this.mapContainerRef.current,
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [27.561822, 53.90679],
-      zoom: 11,
     });
 
-    const mapMarkers: any[] = [];
+    const mapMarkers: IMapMarker[] = [];
 
     banks.forEach((bank: IBank) => {
       const h3 = document.createElement("p");
       h3.innerHTML = bank.name;
       h3.style.color = "#000";
       const marker = new mapboxgl.Marker({ color: "#ff0000" });
+
       marker
         .setLngLat([bank.coords.longitude, bank.coords.latitude])
         .setPopup(new mapboxgl.Popup().setDOMContent(h3))
@@ -73,18 +50,17 @@ export default class BankMapContent extends Component<IProps, IState> {
 
     this.setState({ mapMarkers });
 
-    if (!localStorage.getItem("currencyData")) {
+    if (!localStorage.getItem(CURRENCIES_DATA)) {
+      const apiKey = process.env.CURRENCY_API_KEY;
+      const apiRequest = process.env.CURRENCY_API_REQUEST;
       axios
-        .get(
-          "https://api.currencyapi.com/v3/latest?apikey=cur_live_A1EqusuOPUwszJMymwnAoeqG1muIzyr1X7CwNn4t",
-        )
+        .get(`${apiRequest}${apiKey}`)
         .then((response: { data: ICurrency }) => {
-          console.log("SEND REQUEST...");
-          localStorage.setItem("currencyData", JSON.stringify(response.data));
+          localStorage.setItem(CURRENCIES_DATA, JSON.stringify(response.data));
           this.setState({ filledBanks: setRandomCurrenciesToBank(30) });
         })
         .catch((error) => {
-          console.log(error);
+          throw new Error(`Error while loading currency data: ${error}`);
         });
     } else {
       this.setState({ filledBanks: setRandomCurrenciesToBank(30) });
@@ -123,7 +99,7 @@ export default class BankMapContent extends Component<IProps, IState> {
     const { searchWord } = this.state;
     return (
       <MapContentContainer id="cy-bank-map">
-        {localStorage.getItem("currencyData") && (
+        {localStorage.getItem(CURRENCIES_DATA) && (
           <CurrencySearchBar
             handleChange={this.handleChange}
             searchWord={searchWord}

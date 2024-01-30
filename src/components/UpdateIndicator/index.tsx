@@ -1,16 +1,13 @@
-import React from "react";
+import React, { JSX } from "react";
 
+import { IProps } from "./interfaces";
 import { Indicator, UpdateInfo } from "./styled";
-
-interface IndicatorProps {
-  lastUpdatedAt: string;
-}
 
 function Loading(): JSX.Element {
   return <h3>LOADING...</h3>;
 }
 
-function UpdateIndicator({ lastUpdatedAt }: IndicatorProps): JSX.Element {
+function UpdateIndicator({ lastUpdatedAt }: IProps): JSX.Element {
   return (
     <UpdateInfo>
       <Indicator />

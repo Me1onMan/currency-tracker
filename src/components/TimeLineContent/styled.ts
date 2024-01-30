@@ -4,105 +4,57 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 0;
-`;
-
-export const DropdownDiv = styled.div`
-  position: relative;
-  & * {
-    width: 100%;
-  }
-`;
-
-export const DropdownBtn = styled.button`
-  cursor: pointer;
-  background-color: #474747;
-  border: none;
-  border-radius: 16px;
-  padding: 8px 16px;
-  font-size: 24px;
-  text-align: left;
-`;
-
-export const List = styled.ul`
-  position: absolute;
-  list-style-type: none;
-  background-color: #474747;
-  border-radius: 16px;
-  max-height: 250px;
-  overflow-y: scroll;
-  z-index: 1;
-`;
-
-export const Item = styled.li`
-  border-radius: 16px;
-  &:hover {
-    background-color: #393939;
-  }
-`;
-
-export const ItemBtn = styled.button`
-  width: 100%;
-  height: 100%;
-  text-align: left;
-  font-size: 24px;
-
-  background: none;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
+  margin-top: ${({ theme }) => theme.sizes.rem.rem1};
 `;
 
 export const OptionsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 54px 0;
-  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: ${({ theme }) => theme.sizes.rem.rem0_5};
+  width: ${({ theme }) => theme.sizes.percents.p100};
+  padding: 0 5%;
 
   & > * {
-    cursor: pointer;
-    background-color: ${(props) => props.theme.bgColorSecondary};
-    color: ${(props) => props.theme.textColorPrimary};
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
+    color: ${({ theme }) => theme.colors.textColorPrimary};
+  }
+
+  & > button {
     padding: 0.25rem 0.75rem;
+
+    background-color: ${({ theme }) => theme.colors.bgColorSecondary};
     border: none;
-    width: 15%;
   }
 
-  @media (max-width: 990px) {
-    display: grid;
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0.5rem;
+    column-gap: ${({ theme }) => theme.sizes.rem.rem0_75};
+    row-gap: ${({ theme }) => theme.sizes.rem.rem1};
 
-    & > * {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    & button {
-      justify-content: center;
-    }
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
   }
 `;
-
-export const Select = styled.select`
-  outline: none;
-  border: none;
-  background-color: ${(props) => props.theme.bgColorSecondary};
-  color: ${(props) => props.theme.textColorPrimary};
-  width: 90%;
-`;
-
-export const Option = styled.option``;
 
 export const DateInput = styled.input`
   cursor: pointer;
-  background-color: ${(props) => props.theme.bgColorSecondary};
-  color: ${(props) => props.theme.textColorPrimary};
+
+  width: ${({ theme }) => theme.sizes.percents.p100};
+  padding: 0.25rem 0.5rem;
+
+  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
   border: none;
-  width: 90%;
+
+  color: ${({ theme }) => theme.colors.textColorPrimary};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
+  }
 `;
 
-export const OptionBtn = styled.button``;
+export const OptionBtn = styled.button`
+  width: ${({ theme }) => theme.sizes.percents.p100};
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    font-size: ${({ theme }) => theme.sizes.rem.rem1_25};
+  }
+`;

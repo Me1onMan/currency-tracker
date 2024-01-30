@@ -5,7 +5,7 @@ export const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 90vh;
+  height: ${({ theme }) => theme.sizes.percents.vh90};
   color: black;
 `;
 
@@ -17,5 +17,5 @@ export const MessageContainer = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 20rem;
+  width: ${({ theme }) => theme.sizes.rem.rem20};
 `;
