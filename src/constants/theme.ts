@@ -9,6 +9,7 @@ const baseTheme = {
 
     px: {
       px1: "1px",
+      px2: "2px",
       px14: "14px",
       px26: "26px",
     },
@@ -27,6 +28,7 @@ const baseTheme = {
       rem3_25: "3.25rem",
       rem4: "4rem",
       rem6: "6rem",
+      rem8: "8rem",
       rem10: "10rem",
       rem12: "12rem",
       rem15: "15rem",

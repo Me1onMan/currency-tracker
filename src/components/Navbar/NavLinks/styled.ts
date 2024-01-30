@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
 export const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  justify-self: center;
-  font-weight: 200;
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    display: flex;
+    justify-content: space-between;
+    justify-self: center;
+    font-weight: 200;
+  }
 `;
 
 export const NavList = styled.ul`

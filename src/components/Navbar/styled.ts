@@ -25,3 +25,25 @@ export const Logo = styled.img`
     width: ${({ theme }) => theme.sizes.rem.rem2_5};
   }
 `;
+
+export const BurgerButton = styled.div`
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: ${({ theme }) => theme.sizes.rem.rem2};
+  height: ${({ theme }) => theme.sizes.rem.rem2};
+
+  & > span {
+    width: ${({ theme }) => theme.sizes.percents.p100};
+    height: ${({ theme }) => theme.sizes.px.px2};
+    background-color: ${({ theme }) => theme.colors.textColorCardPrimary};
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.screenSize.tablet}) {
+    display: none;
+  }
+`;
