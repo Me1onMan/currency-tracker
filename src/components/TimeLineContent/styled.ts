@@ -35,18 +35,6 @@ export const OptionsContainer = styled.div`
   }
 `;
 
-export const Select = styled.select`
-  width: ${({ theme }) => theme.sizes.percents.p100};
-  padding: 0.25rem 0.5rem;
-
-  background-color: ${({ theme }) => theme.colors.bgColorSecondary};
-  border: none;
-
-  color: ${({ theme }) => theme.colors.textColorPrimary};
-`;
-
-export const Option = styled.option``;
-
 export const DateInput = styled.input`
   cursor: pointer;
 

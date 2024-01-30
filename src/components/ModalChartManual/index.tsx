@@ -19,6 +19,29 @@ function ModalChartManual({
 }: IProps): JSX.Element {
   const [selectedDate, setSelectedDate] = useState<IChartData>(chartData[0]);
 
+  const inputs = [
+    {
+      id: "rate_low",
+      label: "Low",
+      value: selectedDate.rate_low,
+    },
+    {
+      id: "rate_high",
+      label: "High",
+      value: selectedDate.rate_high,
+    },
+    {
+      id: "rate_open",
+      label: "Open",
+      value: selectedDate.rate_open,
+    },
+    {
+      id: "rate_close",
+      label: "Close",
+      value: selectedDate.rate_close,
+    },
+  ];
+
   const changeDate = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedDate(
       chartData.find((el) => el.time_period_start === e.target.value),
@@ -28,7 +51,7 @@ function ModalChartManual({
   const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedDate((prevSD) => ({
       ...prevSD,
-      [e.target.id]: e.target.value,
+      [e.target.id]: +e.target.value,
     }));
   };
 
@@ -48,42 +71,17 @@ function ModalChartManual({
           ))}
         </Select>
         <InputGridContainer>
-          <label htmlFor="rate_low">
-            Low
-            <Input
-              id="rate_low"
-              value={selectedDate.rate_low}
-              onChange={changeValue}
-              placeholder="Low"
-            />
-          </label>
-          <label htmlFor="rate_high">
-            High
-            <Input
-              id="rate_high"
-              value={selectedDate.rate_high}
-              onChange={changeValue}
-              placeholder="High"
-            />
-          </label>
-          <label htmlFor="rate_open">
-            Open
-            <Input
-              id="rate_open"
-              value={selectedDate.rate_open}
-              onChange={changeValue}
-              placeholder="Open"
-            />
-          </label>
-          <label htmlFor="rate_close">
-            Close
-            <Input
-              id="rate_close"
-              value={selectedDate.rate_close}
-              onChange={changeValue}
-              placeholder="Close"
-            />
-          </label>
+          {inputs.map((el) => (
+            <label htmlFor={el.id} key={el.id}>
+              {el.label}
+              <Input
+                id={el.id}
+                value={el.value}
+                onChange={changeValue}
+                placeholder={el.label}
+              />
+            </label>
+          ))}
         </InputGridContainer>
         <ButtonContainer>
           <Button onClick={() => onChangeValues(selectedDate)} type="button">

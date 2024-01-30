@@ -16,14 +16,7 @@ import axios from "axios";
 import { checkMaxDate } from "./checkMaxDate";
 import { IChartData, IProps, IState } from "./interfaces";
 import SelectComponent from "./Select";
-import {
-  Container,
-  DateInput,
-  // Option,
-  OptionBtn,
-  OptionsContainer,
-  // Select,
-} from "./styled";
+import { Container, DateInput, OptionBtn, OptionsContainer } from "./styled";
 
 class TimeLine extends React.Component<IProps, IState> {
   observer!: ChartObserver;
@@ -146,14 +139,6 @@ class TimeLine extends React.Component<IProps, IState> {
     this.setState({ targetCurrency: value });
   }
 
-  // changeBaseCurrency(e: ChangeEvent<HTMLSelectElement>) {
-  //   this.setState({ baseCurrency: e.target.value });
-  // }
-
-  // changeTargetCurrency(e: ChangeEvent<HTMLSelectElement>) {
-  //   this.setState({ targetCurrency: e.target.value });
-  // }
-
   changeChartValue(newEl: IChartData) {
     this.setState((prevState) => ({
       responseData: prevState.responseData.map((prevEl: IChartData) =>
@@ -194,34 +179,6 @@ class TimeLine extends React.Component<IProps, IState> {
               selectedCurrency={targetCurrency}
               onChange={this.changeTargetCurrency}
             />
-            {/* <label>
-              From
-              <Select
-                onChange={(e) => this.changeBaseCurrency(e)}
-                value={baseCurrency}
-              >
-                <Option disabled>Base currency</Option>
-                {targetCurrencies.map((code: string) => (
-                  <Option value={code} key={code}>
-                    {code}
-                  </Option>
-                ))}
-              </Select>
-            </label>
-            <label>
-              To
-              <Select
-                onChange={(e) => this.changeTargetCurrency(e)}
-                value={targetCurrency}
-              >
-                <Option disabled>Target currency</Option>
-                {targetCurrencies.map((code: string) => (
-                  <Option value={code} key={code}>
-                    {code}
-                  </Option>
-                ))}
-              </Select>
-            </label> */}
             <label htmlFor="dateFrom">
               From
               <DateInput
