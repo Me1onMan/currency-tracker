@@ -53,7 +53,8 @@ export const SearchResults = styled.div`
   gap: ${({ theme }) => theme.sizes.rem.rem0_5};
 
   max-height: ${({ theme }) => theme.sizes.rem.rem8};
-  padding: ${({ theme }) => theme.sizes.rem.rem0_5};
+  width: ${({ theme }) => theme.sizes.percents.p100};
+  padding: ${({ theme }) => theme.sizes.rem.rem0_5} 0;
 
   @media (min-width: ${({ theme }) => theme.sizes.screenSize.mobileL}) {
     grid-template-columns: repeat(6, 1fr);
@@ -76,6 +77,7 @@ export const ResultItem = styled.button`
   justify-content: center;
 
   width: ${({ theme }) => theme.sizes.percents.p100};
+  padding: 0.25rem 0.5rem;
 
   background-color: ${({ theme }) => theme.colors.bgColorSecondary};
   border: none;
