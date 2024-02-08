@@ -64,9 +64,9 @@ function ModalChartManual({
       <ModalContainer>
         <Select value={selectedDate.time_period_start} onChange={changeDate}>
           <option disabled>DATE</option>
-          {chartData.map((el) => (
-            <option value={el.time_period_start} key={el.time_period_start}>
-              {formatDate(el.time_period_start, "dd.MM.yyyy")}
+          {chartData.map(({ time_period_start }) => (
+            <option value={time_period_start} key={time_period_start}>
+              {formatDate(time_period_start, "dd.MM.yyyy")}
             </option>
           ))}
         </Select>
