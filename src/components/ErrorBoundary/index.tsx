@@ -18,6 +18,10 @@ class ErrorBoundary extends Component<IProps, IState> {
     };
   }
 
+  componentDidCatch(error: Error): void {
+    console.log(error);
+  }
+
   render() {
     const { children } = this.props;
     const { hasError } = this.state;

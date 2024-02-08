@@ -56,7 +56,8 @@
       "error",
       { "varsIgnorePattern": "^_" }
     ],
-    "react/static-property-placement": ["off", "property assignment"]
+    "react/static-property-placement": ["off", "property assignment"],
+    "camelcase": "off"
   },
   "globals": {
     "JSX": true
