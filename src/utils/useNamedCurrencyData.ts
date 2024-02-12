@@ -10,6 +10,7 @@ type currencyResponse = {
       code: string;
       name?: string;
       value: number;
+      icon?: string;
     };
   };
 };
