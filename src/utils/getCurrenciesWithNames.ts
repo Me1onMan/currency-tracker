@@ -1,4 +1,5 @@
 import { currencyNames, targetCurrencies } from "@constants/currency";
+import currencyIconPaths from "@constants/iconPaths";
 
 interface ICurrencies {
   meta: { last_updated_at: string };
@@ -7,6 +8,7 @@ interface ICurrencies {
       code: string;
       name?: string;
       value: number;
+      icon?: string;
     };
   };
 }
@@ -22,6 +24,7 @@ const getCurrenciesWithNames = (currenciesData: ICurrencies): ICurrencies => {
       code,
       name: currencyNames[code],
       value: currenciesData.data[code].value,
+      icon: currencyIconPaths[code],
     };
   });
   return currencyDataWithName;
